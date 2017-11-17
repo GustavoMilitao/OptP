@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Optimization;
+using Optimization.Solver.Cplex;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +12,10 @@ namespace OptP.Controllers
     {
         public ActionResult Index()
         {
+            CplexSolver simplex = new CplexSolver();
+            Model modeloMatematico = new Model();
+
+            //modeloMatematico.AddConstraint();
             return View();
         }
 
