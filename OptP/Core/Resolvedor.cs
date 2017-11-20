@@ -93,24 +93,24 @@ namespace Core
         private Constraint GetExpressaoDeRestricao(Solver solver, Restricao r)
         {
             Constraint c = null;
-            var digits = Math.Ceiling(Math.Log10(r.Comparado));
-            switch (r.Comparador)
+            var digits = Math.Ceiling(Math.Log10(r.Expressao));
+            switch (r.Operador)
             {
-                case Comparador.MENOR_IGUAL:
+                case Operador.MENOR_IGUAL:
                     // Ex: 2x + 3y <= 10
-                    c = solver.MakeConstraint(double.NegativeInfinity, r.Comparado, r.NomeRestricao);
+                    c = solver.MakeConstraint(double.NegativeInfinity, r.Expressao, r.NomeRestricao);
                     break;
-                case Comparador.MAIOR_IGUAL:
+                case Operador.MAIOR_IGUAL:
                     // Ex: 2x + 3y >= 2
-                    c = solver.MakeConstraint(r.Comparado, double.PositiveInfinity, r.NomeRestricao);
+                    c = solver.MakeConstraint(r.Expressao, double.PositiveInfinity, r.NomeRestricao);
                     break;
-                case Comparador.MENOR:
+                case Operador.MENOR:
                     // Ex: 2x < 5
-                    c = solver.MakeConstraint(double.NegativeInfinity, r.Comparado - Math.Pow(1, -(15 - digits)), r.NomeRestricao);
+                    c = solver.MakeConstraint(double.NegativeInfinity, r.Expressao - Math.Pow(1, -(15 - digits)), r.NomeRestricao);
                     break;
-                case Comparador.MAIOR:
+                case Operador.MAIOR:
                     // Ex: 4x > 0
-                    c = solver.MakeConstraint(r.Comparado + Math.Pow(1, -(15 - digits)), double.PositiveInfinity, r.NomeRestricao);
+                    c = solver.MakeConstraint(r.Expressao + Math.Pow(1, -(15 - digits)), double.PositiveInfinity, r.NomeRestricao);
                     break;
             }
 

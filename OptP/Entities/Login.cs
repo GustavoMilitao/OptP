@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public enum Comparador
+    public class Login
     {
-        MENOR_IGUAL = 0,
-        MAIOR_IGUAL = 1,
-        MENOR = 2,
-        MAIOR = 3
+        public string Usuario { get; set; }
+        public string Senha { get; set; }
     }
 }

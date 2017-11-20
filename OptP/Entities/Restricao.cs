@@ -10,7 +10,7 @@ namespace Entities
     {
         public String NomeRestricao { get; set; }
         public Dictionary<string, double> Variaveis { get; set; }
-        public Comparador Comparador { get; set; }
-        public double Comparado { get; set; }
+        public Operador Operador { get; set; }
+        public double Expressao { get; set; }
     }
 }

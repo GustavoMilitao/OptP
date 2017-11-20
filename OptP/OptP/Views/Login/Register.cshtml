@@ -1,0 +1,28 @@
+﻿<div ng-controller="RegisterController" class="row">
+    <div align="center" class="col-xs-12 col-sm-4 col-md-4 col-lg-3 col-centered">
+        <div class="login-dp">
+            <div class="col-md-12 col-sm-12 col-lg-12 espacado">
+                <form ng-submit="submit()" class="form" href="#" accept-charset="UTF-8" id="login-form">
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputEmail2">Usuário</label>
+                        <input ng-model="login" type="text" class="form-control" id="user" placeholder="Usuário" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputPassword2">Senha</label>
+                        <input ng-model="senha" type="password" class="form-control" id="password" placeholder="Senha" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputPassword2">Repita a Senha</label>
+                        <input ng-model="senha1" type="password" class="form-control" id="password" placeholder="Repita a Senha" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="bottom text-center">
+                <h5>Novo aqui ? <a href="#"><b>Cadastre-se</b></a></h5>
+            </div>
+        </div>
+    </div>
+</div>
