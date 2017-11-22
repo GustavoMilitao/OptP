@@ -4,7 +4,7 @@
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-centered">
             <div style="min-width: initial !important;"
                  class="login-dp col-xs-2 col-sm-2 col-md-2 col-lg-2 pull-right">
-                <a ng-click="logout()">Sair</a>
+                <a style="cursor:pointer;" ng-click="logout()">Sair</a>
             </div>
         </div>
     </div>
@@ -174,11 +174,11 @@
                             teve como resultados:
                         </p>
                         <br />
-                        <p ng-repeat="var in solucao.VariaveisResolvidas">
-                            <label>{{var.Name()}} : {{var.SolutionValue()}}</label>
+                        <p ng-repeat="(name, value) in solucao.VariaveisResolvidas">
+                            <label>{{name}} : {{value}}</label>
                         </p>
                         <p>
-                            <label>Objetivo(z) : {{var.ValorFuncaoObjetivoResolvido}}</label>
+                            <label>Objetivo(z) : {{solucao.ValorFuncaoObjetivoResolvido}}</label>
                         </p>
                     </div>
                 </div>
