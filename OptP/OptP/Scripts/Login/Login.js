@@ -23,7 +23,7 @@ function LoginController($scope, $http, $window) {
                 Senha: $scope.senha
             }
         }).then(function successCallback(response) {
-            if (response.data.sucesso) {
+            if (response.data.success) {
                 setCookie("loggedUser", success.data.user, 365);
                 $window.location.href = '/Home'
             } else {

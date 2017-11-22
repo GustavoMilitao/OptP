@@ -94,12 +94,17 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resolvedor.cs" />
+    <Compile Include="UserCore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{c931a752-4bb3-4e30-8959-59b1a2c92dbb}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{c1ed7464-5ee4-463c-add0-b0131f1df9b2}</Project>
       <Name>Entities</Name>

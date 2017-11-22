@@ -76,7 +76,7 @@ function HomeController($scope, $http) {
                 url: '/Home/ResolverProblema',
                 data: $scope.modeloMatematico
             }).then(function successCallback(response) {
-                if (response.data.sucesso) {
+                if (response.data.success) {
                     alert('Sucesso!');
                 } else {
                     alert(response.data.message);

@@ -15,8 +15,18 @@ namespace OptP.Controllers
     {
         public ActionResult Index()
         {
-            var idUsuario = Request.Cookies["loggedUser"];
-            return View();
+            var idUsuario = Request.Cookies["loggedUser"].Value;
+            var user = UserCore.Get(idUsuario);
+            if (user == null)
+            {
+                Request.Cookies["loggedUser"].Expires = DateTime.Now;
+                Request.Cookies["loggedUser"].Value = "";
+                return View("../Login/Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -31,7 +41,7 @@ namespace OptP.Controllers
             // Chamando função para resolver o problema
             Solucao solucao = resolvedor.ResolverProblemaMatematico(modelo);
             // Retornando o resultado
-            return new JsonResult() { Data = serializer.Serialize(solucao) };
+            return Json(new { data = serializer.Serialize(solucao) });
         }
     }
 }

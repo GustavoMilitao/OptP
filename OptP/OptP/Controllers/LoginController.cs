@@ -29,9 +29,19 @@ namespace OptP.Controllers
         {
             var req = Request.InputStream;
             var json = new StreamReader(req).ReadToEnd();
-            var result = JsonConvert.DeserializeObject<Login>(json);
-            // Verificar se existe na base
-            return new JsonResult();
+            var result = JsonConvert.DeserializeObject<User>(json);
+
+            var user = UserCore.GetByUsuarioESenha(result.Usuario, result.Senha);
+            if (user == null)
+            {
+                Request.Cookies["loggedUser"].Expires = DateTime.Now;
+                Request.Cookies["loggedUser"].Value = "";
+                return Json(new { data = new { success = false, message = "Usuário inválido!" } });
+            }
+            else
+            {
+                return Json(new { data = new { success = true } });
+            }
         }
 
         [HttpPost]
@@ -39,9 +49,20 @@ namespace OptP.Controllers
         {
             var req = Request.InputStream;
             var json = new StreamReader(req).ReadToEnd();
-            var result = JsonConvert.DeserializeObject<Login>(json);
-            // Verificar se existe na e registrar
-            return new JsonResult();
+            var result = JsonConvert.DeserializeObject<User>(json);
+            var user = UserCore.GetByUsuario(result.Usuario);
+            if (user != null)
+            {
+                Request.Cookies["loggedUser"].Expires = DateTime.Now;
+                Request.Cookies["loggedUser"].Value = "";
+                return Json(new { data = new { success = false, message = "Usuário já cadastrado!" } });
+            }
+            else
+            {
+                var insertedUser = new User(result.Usuario, result.Senha);
+                UserCore.Post(insertedUser);
+                return Json(new { data = new { success = true, user = insertedUser._id } });
+            }
         }
     }
 }

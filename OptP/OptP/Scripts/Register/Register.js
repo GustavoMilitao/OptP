@@ -19,13 +19,14 @@ function RegisterController($scope, $http, $window) {
     $scope.registrar = function () {
         $http({
             method: 'POST',
-            url: '/Login',
+            url: '/Login/Registrar',
             data: {
                 Usuario: $scope.login,
                 Senha: $scope.senha
             }
         }).then(function successCallback(response) {
-            if (response.data.sucesso) {
+            if (response.data.success) {
+                setCookie("loggedUser", success.data.user, 365);
                 $window.location.href = '/Home'
             } else {
                 alert(response.data.message);
