@@ -3,6 +3,15 @@
     .controller('RegisterController', RegisterController);
 
 function RegisterController($scope, $http, $window) {
+
+    angular.element(document).ready(function () {
+        var cookie = getCookie('loggedUser');
+        if (cookie) {
+            window.location.href = "/Home";
+        }
+    });
+
+
     $scope.login = "";
     $scope.senha = "";
     $scope.senha1 = "";
@@ -42,3 +51,5 @@ function RegisterController($scope, $http, $window) {
             $scope.registrar();
         }
     }
+}
+

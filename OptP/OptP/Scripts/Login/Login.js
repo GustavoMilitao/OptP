@@ -3,6 +3,14 @@
     .controller('LoginController', LoginController);
 
 function LoginController($scope, $http, $window) {
+
+    angular.element(document).ready(function () {
+        var cookie = getCookie('loggedUser');
+        if (cookie) {
+            window.location.href = "/Home";
+        }
+    });
+
     $scope.login = "";
     $scope.senha = "";
 
@@ -16,6 +24,7 @@ function LoginController($scope, $http, $window) {
             }
         }).then(function successCallback(response) {
             if (response.data.sucesso) {
+                setCookie("loggedUser", success.data.user, 365);
                 $window.location.href = '/Home'
             } else {
                 alert(response.data.message);
