@@ -77,7 +77,7 @@ function HomeController($scope, $http) {
                 data: $scope.modeloMatematico
             }).then(function successCallback(response) {
                 if (response.data.success) {
-                    alert('Sucesso!');
+                    $scope.solucao = response.data.solucao;
                 } else {
                     alert(response.data.message);
                 }

@@ -48,7 +48,7 @@ namespace OptP.Controllers
             // Chamando função para resolver o problema
             Solucao solucao = resolvedor.ResolverProblemaMatematico(modelo);
             // Retornando o resultado
-            return Json(new { data = serializer.Serialize(solucao) });
+            return Json(new { success = true, solucao = serializer.Serialize(solucao) });
         }
     }
 }

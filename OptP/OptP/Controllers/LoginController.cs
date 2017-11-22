@@ -34,13 +34,17 @@ namespace OptP.Controllers
             var user = UserCore.GetByUsuarioESenha(result.Usuario, result.Senha);
             if (user == null)
             {
-                Request.Cookies["loggedUser"].Expires = DateTime.Now;
-                Request.Cookies["loggedUser"].Value = "";
+                var cookie = Request.Cookies["loggedUser"];
+                if (cookie != null)
+                {
+                    cookie.Expires = DateTime.Now;
+                    cookie.Value = "";
+                }
                 return Json(new { data = new { success = false, message = "Usuário inválido!" } });
             }
             else
             {
-                return Json(new { data = new { success = true } });
+                return Json(new { success = true });
             }
         }
 
@@ -53,15 +57,19 @@ namespace OptP.Controllers
             var user = UserCore.GetByUsuario(result.Usuario);
             if (user != null)
             {
-                Request.Cookies["loggedUser"].Expires = DateTime.Now;
-                Request.Cookies["loggedUser"].Value = "";
-                return Json(new { data = new { success = false, message = "Usuário já cadastrado!" } });
+                var cookie = Request.Cookies["loggedUser"];
+                if (cookie != null)
+                {
+                    cookie.Expires = DateTime.Now;
+                    cookie.Value = "";
+                }
+                return Json(new { success = false, message = "Usuário já cadastrado!" });
             }
             else
             {
                 var insertedUser = new User(result.Usuario, result.Senha);
                 UserCore.Post(insertedUser);
-                return Json(new { data = new { success = true, user = insertedUser._id } });
+                return Json(new { success = true, user = insertedUser._id.ToString() });
             }
         }
     }

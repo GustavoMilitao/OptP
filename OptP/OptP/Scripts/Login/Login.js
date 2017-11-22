@@ -1,5 +1,5 @@
 ﻿angular
-    .module('app.optp', ['$window'])
+    .module('app.optp', [])
     .controller('LoginController', LoginController);
 
 function LoginController($scope, $http, $window) {

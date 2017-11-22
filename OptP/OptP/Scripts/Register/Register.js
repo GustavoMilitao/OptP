@@ -1,5 +1,5 @@
 ﻿angular
-    .module('app.optp', ['$window'])
+    .module('app.optp', [])
     .controller('RegisterController', RegisterController);
 
 function RegisterController($scope, $http, $window) {
@@ -46,7 +46,7 @@ function RegisterController($scope, $http, $window) {
         } else if (!$scope.senha1 || $scope.senha1 == null ||
             $scope.senha1 == undefined || $scope.senha1 == "") {
             alert('Senha inválida');
-        } else if (senha1 != senha) {
+        } else if ($scope.senha1 != $scope.senha) {
             alert('As senhas diferem');
         } else {
             $scope.registrar();
