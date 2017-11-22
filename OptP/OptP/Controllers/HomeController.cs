@@ -15,12 +15,19 @@ namespace OptP.Controllers
     {
         public ActionResult Index()
         {
-            var idUsuario = Request.Cookies["loggedUser"].Value;
-            var user = UserCore.Get(idUsuario);
+            User user = null;
+            var cookie = Request.Cookies["loggedUser"];
+            if(cookie != null)
+            {
+                user = UserCore.Get(cookie.Value);
+            }
             if (user == null)
             {
-                Request.Cookies["loggedUser"].Expires = DateTime.Now;
-                Request.Cookies["loggedUser"].Value = "";
+                if(cookie != null)
+                {
+                    cookie.Expires = DateTime.Now;
+                    cookie.Value = "";
+                }
                 return View("../Login/Index");
             }
             else
