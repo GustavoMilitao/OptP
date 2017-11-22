@@ -15,6 +15,7 @@ namespace OptP.Controllers
     {
         public ActionResult Index()
         {
+            var idUsuario = Request.Cookies["loggedUser"];
             return View();
         }
 

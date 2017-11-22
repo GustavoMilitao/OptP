@@ -86,4 +86,10 @@ function HomeController($scope, $http) {
             });
         }
     }
+
+    $scope.logout = function () {
+        setCookie('loggedUser', "", -1);
+        window.location.href = "/";
+    }
+
 }
