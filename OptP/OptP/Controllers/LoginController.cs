@@ -44,7 +44,7 @@ namespace OptP.Controllers
             }
             else
             {
-                return Json(new { success = true });
+                return Json(new { success = true, user = user._id.ToString() });
             }
         }
 

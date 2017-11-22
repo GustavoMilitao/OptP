@@ -26,7 +26,7 @@ function RegisterController($scope, $http, $window) {
             }
         }).then(function successCallback(response) {
             if (response.data.success) {
-                setCookie("loggedUser", success.data.user, 365);
+                setCookie("loggedUser", response.data.user, 365);
                 $window.location.href = '/Home'
             } else {
                 alert(response.data.message);

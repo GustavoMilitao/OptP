@@ -17,14 +17,14 @@ function LoginController($scope, $http, $window) {
     $scope.logar = function () {
         $http({
             method: 'POST',
-            url: '/Login',
+            url: '/Login/Login',
             data: {
                 Usuario: $scope.login,
                 Senha: $scope.senha
             }
         }).then(function successCallback(response) {
             if (response.data.success) {
-                setCookie("loggedUser", success.data.user, 365);
+                setCookie("loggedUser", response.data.user, 365);
                 $window.location.href = '/Home'
             } else {
                 alert(response.data.message);
@@ -43,5 +43,6 @@ function LoginController($scope, $http, $window) {
             alert('Senha inválida');
         } else {
             $scope.logar();
+        }
     }
 }
