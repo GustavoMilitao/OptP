@@ -28,7 +28,7 @@ function HomeController($scope, $http) {
         1: "Minimização",
     }
     $scope.variavelDaRestricaoAAdicionar = {};
-    $scope.solucao = {};
+    $scope.solucao = null;
 
     $scope.adicionarVariavelRestricao = function () {
         if ($scope.variavelDaRestricaoAAdicionar.nomeVariavel

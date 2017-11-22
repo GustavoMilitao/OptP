@@ -9,10 +9,11 @@ namespace Entities
 {
     public class Solucao
     {
+        public string NomeModelo { get; set; }
         public List<Variable> VariaveisResolvidas { get; set; }
         public double ValorFuncaoObjetivoResolvido { get; set; }
 
-        public Solucao(List<Variable> variaveisResolvidas, double valorFuncaoObjetivoResolvido)
+        public Solucao(string NomeModelo, List<Variable> variaveisResolvidas, double valorFuncaoObjetivoResolvido)
         {
             VariaveisResolvidas = variaveisResolvidas;
             ValorFuncaoObjetivoResolvido = valorFuncaoObjetivoResolvido;

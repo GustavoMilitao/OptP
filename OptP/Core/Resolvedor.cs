@@ -29,7 +29,7 @@ namespace Core
             // Resolver problema Linear
             solver.Solve();
             // Retorna solução no esquema de classes do projeto.
-            return new Solucao(variaveis, solver.Objective().Value());
+            return new Solucao(modelo.NomeModeloMatematico, variaveis, solver.Objective().Value());
         }
 
         private void resolverFuncaoObjetivo(ModeloMatematico modelo,

@@ -162,6 +162,27 @@
                     </form>
                 </div>
             </div>
+            <br />
+            <div ng-hide="solucao == null" class="login-dp">
+                <div class="col-md-12 col-sm-12 col-lg-12 espacado">
+                    <div class="row">
+                        <label>Solução</label>
+                    </div>
+                    <div class="row">
+                        <p>
+                            A função objetivo de {{direcaoOptimizacao[modeloMatematico.Direcao]}}
+                            teve como resultados:
+                        </p>
+                        <br />
+                        <p ng-repeat="var in solucao.VariaveisResolvidas">
+                            <label>{{var.Name()}} : {{var.SolutionValue()}}</label>
+                        </p>
+                        <p>
+                            <label>Objetivo(z) : {{var.ValorFuncaoObjetivoResolvido}}</label>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
