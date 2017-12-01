@@ -1,5 +1,5 @@
 ﻿<script src="~/Scripts/Home/Home.js"></script>
-<div ng-controller="HomeController">
+<div id="appoptp" ng-controller="HomeController">
     <!-- Sair -->
     <div class="row">
         <div style="margin-bottom: 0 !important;" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-centered">
@@ -14,6 +14,61 @@
     </div>
     <div class="row">
         <div align="center" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-centered">
+            <!-- Nome do modelo -->
+            <div class="login-dp">
+                <div class="col-md-12 col-sm-12 col-lg-12 espacado">
+                    <div class="form-group">
+                        <div class="row">
+                          <label>Passos para utilizar o sistema : </label>
+                        </div>
+                        <div class="row">
+                            <label> 1 - Adicione um nome ao modelo. 
+                                </label> 
+                        </div>
+                        <div class="row">
+                            <label> 2 - Adicione as variáveis desejadas juntamente com seus coeficientes 
+                                (é necessário ao menos uma variável para permitir o prosseguimento da resolução) 
+                                </label> 
+                        </div>
+                        <div class="row">
+                            <label>  
+                                3 - Logo após a adição das variáveis, será possível visualizar e selecionar o objetivo da sua função. (f.o. -> Min/Max(Z) = ...)
+                            </label>
+                        </div>
+                        <div class="row">
+                            <label>4 - Será possível visualizar a caixa de inserção de restrições </label>
+                        </div>
+                        <div class="row">
+                            <label>5 - Na caixa de inserção de restrições, 
+                                há a possibilidade de escolher o coeficiente para cada variável 
+                                (se não for adicionado coeficiente, a variável não é incluída na restrição)  </label>
+                        </div>
+                        <div class="row">
+                            <label>6 - Selecione o operador que deseja 
+                                (menor igual, menor, maior igual, maior ou igual), 
+                                defina o valor da expressão e clique em adicionar restrição </label>
+                        </div>
+                        <div class="row">
+                            <label>7 - Após adicionar a restrição, é possível visualizá-la na parte restrições inseridas. </label>
+                        </div>
+                        <div class="row">
+                            <label>8 - É possível remover a restrição clicando sobre o botão remover. </label>
+                        </div>
+                        <div class="row">
+                            <label>9 - É possível visualizar na penúltima caixa, um resumo do modelo descrito por você. </label>
+                        </div>
+                        <div class="row">
+                            <label>10 - Ao clicar sobre o botão resolver, aguarde alguns segundos e uma 
+                                nova caixa será mostrada abaixo deste botão com a resolução do modelo. </label>
+                        </div>
+                        <div class="row">
+                            <label>OBS: Reavalie seu modelo para certificar que tenha solução. 
+                                Modelos sem soluções apresentam resultado como 0 (o que pode acontecer também com modelos com solução mínima ou máxima iguais a 0)  </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
             <!-- Nome do modelo -->
             <div class="login-dp">
                 <div class="col-md-12 col-sm-12 col-lg-12 espacado">
@@ -41,11 +96,17 @@
                                         <label>Inserção de Variáveis</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input ng-model="variavelAAdicionar.coeficiente" type="number" step="0.01" class="form-control ng-pristine ng-untouched ng-empty ng-valid-step ng-invalid ng-invalid-required"
+                                        <input 
+                                        oninvalid="this.setCustomValidity('Insira um coeficiente!')"
+                                        oninput="setCustomValidity('')"
+                                        ng-model="variavelAAdicionar.coeficiente" type="number" step="0.01" class="form-control"
                                             placeholder="Coeficiente" required="">
                                     </div>
                                     <div class="col-md-5">
-                                        <input ng-model="variavelAAdicionar.nomeVariavel" type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+                                        <input 
+                                        oninvalid="this.setCustomValidity('Insira um nome para a variável!')"
+                                        oninput="setCustomValidity('')"
+                                        ng-model="variavelAAdicionar.nomeVariavel" type="text" class="form-control"
                                             placeholder="Nome da variável" required="">
                                     </div>
                                     <div class="col-md-3">
@@ -60,7 +121,7 @@
                 </div>
             </div>
             <!-- Função objetivo -->
-            <div ng-show="modeloMatematico.Variaveis > 0">
+            <div ng-show="Object.keys(modeloMatematico.Variaveis).length > 0">
                 <br />
                 <div class="login-dp">
                     <br />
@@ -87,13 +148,13 @@
                 </div>
             </div>
             <!-- Inserção de restrições / Restrições inseridas -->
-            <div ng-show="modeloMatematico.Variaveis > 0">
+            <div ng-show="Object.keys(modeloMatematico.Variaveis).length > 0">
                 <br />
                 <div class="login-dp">
                     <br />
                     <div class="col-md-12 col-sm-12 col-lg-12 espacado">
                         <!-- Inserção de restrições -->
-                        <form ng-submit="adicionarRestricao()" class="form" href="#" accept-charset="UTF-8">
+                        <form ng-submit="adicionarRestricao($event)" class="form" href="#" accept-charset="UTF-8">
                             <div class="form-group">
                                 <div class="row">
                                     <label>Inserção de restrições</label>
@@ -109,12 +170,14 @@
                                                     < modeloMatematico.Variaveis ? '+' : ''}}</p>
                                             </div>
                                             <div class="col-md-1" style="display: inline-block;">
-                                                <select ng-model="restricaoAAdicionar.Operador" class="form-control" required>
+                                                <select ng-model="restricaoAAdicionar.Operador" class="form-control">
                                                     <option ng-repeat="(codigo, operador) in operadores" value="{{codigo}}">{{operador}}</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-4" style="display: inline-block;">
                                                 <input ng-model="restricaoAAdicionar.Expressao" type="number" step="0.01" class="form-control" placeholder="Valor expressão"
+                                                oninvalid="this.setCustomValidity('É obrigatório selecionar o valor da expressão')"
+                                                oninput="setCustomValidity('')"
                                                     required>
                                             </div>
                                             <div style="display: inline-block;">
@@ -155,7 +218,7 @@
                 </div>
             </div>
             <!-- Modelo -->
-            <div ng-show="modeloMatematico.Variaveis > 0">
+            <div ng-show="Object.keys(modeloMatematico.Variaveis).length > 0">
                 <br />
                 <div class="login-dp">
                     <br />
@@ -207,11 +270,11 @@
                 </div>
             </div>
             <!-- Resolver problema -->
-            <div ng-show="modeloMatematico.Variaveis > 0">
+            <div ng-show="Object.keys(modeloMatematico.Variaveis).length > 0">
                 <br />
                 <div class="login-dp">
                     <div class="col-md-12 col-sm-12 col-lg-12 espacado">
-                        <form ng-submit="solucionarProblema()" class="form" href="#" accept-charset="UTF-8">
+                        <form ng-submit="solucionarProblema($event)" class="form" href="#" accept-charset="UTF-8">
                             <div class="row">
                                 <div style="float:initial;" class="col-md-4 form-group">
                                     <button type="submit" class="btn btn-primary btn-block">Resolver</button>

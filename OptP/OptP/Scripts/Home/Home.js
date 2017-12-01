@@ -1,8 +1,8 @@
 ﻿angular
-    .module('app.optp', [])
+    .module('app.optp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
     .controller('HomeController', HomeController);
 
-function HomeController($scope, $http) {
+function HomeController($scope, $http, $mdDialog) {
     $scope.modeloMatematico = {
         NomeModeloMatematico: "",
         Variaveis: {},
@@ -41,8 +41,8 @@ function HomeController($scope, $http) {
         }
     }
 
-    $scope.adicionarRestricao = function () {
-        if (Object.keys($scope.restricaoAAdicionar.Variaveis).length > 0) {
+    $scope.adicionarRestricao = function (ev) {
+        if ($scope.temAlgumCoeficiente()) {
             $scope.modeloMatematico.Restricoes.push($scope.restricaoAAdicionar);
             $scope.restricaoAAdicionar = {
                 NomeRestricao: "",
@@ -50,7 +50,50 @@ function HomeController($scope, $http) {
                 Operador: "",
                 Expressao: 0.0
             };
+        } else {
+            showAlert(ev, 'Atenção', 'Adicione ao menos um coeficiente para alguma das variáveis');
         }
+    }
+
+    $scope.removerRestricao = function (index) {
+        $scope.modeloMatematico.Restricoes.splice(index, 1);
+    }
+
+    $scope.temAlgumCoeficiente = function () {
+        var tem = false;
+        Object.keys($scope.restricaoAAdicionar.Variaveis).forEach(function (elemento) {
+            if ($scope.restricaoAAdicionar.Variaveis[elemento]
+                && $scope.restricaoAAdicionar.Variaveis[elemento] != "") {
+                tem = true;
+            }
+        });
+        return tem;
+    }
+
+    $scope.haSolucao = function () {
+        return Object.keys($scope.modeloMatematico.Variaveis).every(function (variavelModelo) {
+            $scope.modeloMatematico.Restricoes.some(function (restricaoModelo) {
+                return Object.keys(restricaoModelo.Variaveis).some(function (variavelRestricao) {
+                    return variavelModelo === variavelRestricao;
+                });
+            });
+        });
+    }
+
+    $scope.showAlert = function (ev, titulo, descricao) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        // Modal dialogs should fully cover application
+        // to prevent interaction outside of dialog
+        $mdDialog.show(
+            $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#appoptp')))
+                .clickOutsideToClose(true)
+                .title(titulo)
+                .textContent(descricao)
+                .ariaLabel('Alert Dialog Demo')
+                .ok('OK')
+                .targetEvent(ev)
+        );
     }
 
     $scope.submitVariavel = function () {
@@ -67,10 +110,8 @@ function HomeController($scope, $http) {
         return strSplit.join(' ');
     }
 
-    $scope.solucionarProblema = function () {
-        if (Object.keys($scope.modeloMatematico.Variaveis).length > 0
-            && $scope.modeloMatematico.Restricoes.length > 0
-            && $scope.modeloMatematico.Direcao != "") {
+    $scope.solucionarProblema = function (ev) {
+        if ($scope.haSolucao()) {
             $http({
                 method: 'POST',
                 url: '/Home/ResolverProblema',
@@ -79,11 +120,13 @@ function HomeController($scope, $http) {
                 if (response.data.success) {
                     $scope.solucao = response.data.solucao;
                 } else {
-                    alert(response.data.message);
+                    $scope.showAlert(ev, 'Erro', response.data.message)
                 }
             }, function errorCallback(response) {
-                alert('Falha na comunicação com o servidor');
+                $scope.showAlert(ev, 'Erro', 'Falha na comunicação com o servidor.')
             });
+        }else{
+            $scope.showAlert(ev, 'Erro', 'O modelo matemático não possui solução pois não há restrição para uma ou mais variáveis.')
         }
     }
 
