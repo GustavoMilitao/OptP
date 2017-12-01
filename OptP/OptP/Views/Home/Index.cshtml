@@ -2,7 +2,7 @@
 <div ng-controller="HomeController">
     <!-- Sair -->
     <div class="row">
-        <div style="margin-bottom: 0 !important;" class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-centered">
+        <div style="margin-bottom: 0 !important;" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-centered">
             <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-right">
                 <div style="cursor:pointer;" class="login-dp">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -36,7 +36,7 @@
                     <form ng-submit="submitVariavel()" class="form" href="#" accept-charset="UTF-8">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-6" style="float: none;">
+                                <div class="col-md-10" style="float: none;">
                                     <div class="row">
                                         <label>Inserção de Variáveis</label>
                                     </div>
@@ -44,11 +44,11 @@
                                         <input ng-model="variavelAAdicionar.coeficiente" type="number" step="0.01" class="form-control ng-pristine ng-untouched ng-empty ng-valid-step ng-invalid ng-invalid-required"
                                             placeholder="Coeficiente" required="">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <input ng-model="variavelAAdicionar.nomeVariavel" type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
                                             placeholder="Nome da variável" required="">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-block">adicionar variável</button>
                                         </div>
@@ -61,7 +61,7 @@
             </div>
             <br />
             <!-- Função objetivo -->
-            <div class="login-dp">
+            <div ng-show="modeloMatematico.Variaveis.length > 0" class="login-dp">
                 <div class="col-md-12 col-sm-12 col-lg-12 espacado">
                     <form class="form" href="#" accept-charset="UTF-8">
                         <div class="form-group">
@@ -85,7 +85,7 @@
             </div>
             <br />
             <!-- Inserção de restrições / Restrições inseridas -->
-            <div class="login-dp">
+            <div ng-show="modeloMatematico.Variaveis > 0" class="login-dp">
                 <div class="col-md-12 col-sm-12 col-lg-12 espacado">
                     <!-- Inserção de restrições -->
                     <form ng-submit="adicionarRestricao()" class="form" href="#" accept-charset="UTF-8">
@@ -98,18 +98,17 @@
                             <div class="row">
                                 <form class="form" href="#" accept-charset="UTF-8">
                                     <div class="col-md-12" style="float: none;">
-                                        <div style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
+                                        <div class="col-md-1" style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
                                             <input ng-model="restricaoAAdicionar.Variaveis[variavel]" type="number" step="0.01" class="form-control" placeholder="0">
                                             <p>{{variavel}} {{$index
                                                 < modeloMatematico.Variaveis ? '+' : ''}}</p>
                                         </div>
-                                        <div style="display: inline-block;">
+                                        <div class="col-md-1" style="display: inline-block;">
                                             <select ng-model="restricaoAAdicionar.Operador" class="form-control" required>
-                                                <option value="" selected>Selecione</option>
                                                 <option ng-repeat="(codigo, operador) in operadores" value="{{codigo}}">{{operador}}</option>
                                             </select>
                                         </div>
-                                        <div style="display: inline-block;">
+                                        <div class="col-md-4" style="display: inline-block;">
                                             <input ng-model="restricaoAAdicionar.Expressao" type="number" step="0.01" class="form-control" placeholder="Valor expressão"
                                                 required>
                                         </div>
@@ -121,10 +120,9 @@
                             </div>
                         </div>
                     </form>
-                    <div style="height: 2px; background-color:black;" class="row">
-                    </div>
                     <!-- Listagem de restrições / Restrições inseridas -->
                     <form ng-show="modeloMatematico.Variaveis.length > 0" class="form" href="#" accept-charset="UTF-8">
+                        <div style="height: 2px; background-color:black;" class="row"></div>
                         <div class="form-group">
                             <div class="row">
                                 <label>Restrições inseridas</label>
@@ -152,7 +150,7 @@
             </div>
             <br />
             <!-- Modelo -->
-            <div class="login-dp">
+            <div ng-show="modeloMatematico.Variaveis > 0" class="login-dp">
                 <div class="col-md-12 col-sm-12 col-lg-12 espacado">
                     <form class="form" href="#" accept-charset="UTF-8">
                         <div class="row">
