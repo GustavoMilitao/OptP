@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="row">
-        <div align="center" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-centered">
+        <div align="center" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-centered">
             <!-- Nome do modelo -->
             <div class="login-dp">
                 <div class="col-md-12 col-sm-12 col-lg-12 espacado">
@@ -66,15 +66,15 @@
                     <form class="form" href="#" accept-charset="UTF-8">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-8" style="float: none;">
-                                    <p>Função Objetivo -></p>
-                                    <select class="form-control" ng-model="modeloMatematico.Direcao">
+                                <div class="col-md-12" style="float: none; display: inline-block;">
+                                    <p style="display: inline-block;">Função Objetivo -></p>
+                                    <select style="display: inline-block;" class="form-control" ng-model="modeloMatematico.Direcao">
                                         <option ng-repeat="(codigo, descricao) in direcaoOptimizacao" value="{{codigo}}">
                                             {{descricao}}
                                         </option>
                                     </select>
-                                    <p>(Z) = </p>
-                                    <p ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
+                                    <p style="display: inline-block;">(Z) = </p>
+                                    <p style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
                                         {{coeficiente}}{{variavel}} {{$index
                                         < modeloMatematico.Variaveis.length ? '+' : ''}} </p>
                                 </div>
@@ -113,16 +113,18 @@
                                             <input ng-model="restricaoAAdicionar.Expressao" type="number" step="0.01" class="form-control" placeholder="Valor expressão"
                                                 required>
                                         </div>
+                                        <div style="display: inline-block;">
                                         <button type="submit" class="btn btn-primary btn-block">Adicionar restrição</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </form>
-                    <div style="height: 1px; background-color:unset;" class="row">
+                    <div style="height: 2px; background-color:black;" class="row">
                     </div>
                     <!-- Listagem de restrições / Restrições inseridas -->
-                    <form class="form" href="#" accept-charset="UTF-8">
+                    <form ng-show="modeloMatematico.Variaveis.length > 0" class="form" href="#" accept-charset="UTF-8">
                         <div class="form-group">
                             <div class="row">
                                 <label>Restrições inseridas</label>
