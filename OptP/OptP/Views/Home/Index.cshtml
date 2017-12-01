@@ -1,5 +1,6 @@
 ﻿<script src="~/Scripts/Home/Home.js"></script>
 <div ng-controller="HomeController">
+    <!-- Sair -->
     <div class="row">
         <div style="margin-bottom: 0 !important;" class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-centered">
             <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 pull-right">
@@ -13,6 +14,7 @@
     </div>
     <div class="row">
         <div align="center" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-centered">
+            <!-- Nome do modelo -->
             <div class="login-dp">
                 <div class="col-md-12 col-sm-12 col-lg-12 espacado">
                     <div class="form-group">
@@ -21,33 +23,35 @@
                         </div>
                         <div class="row">
                             <div class="col-md-5 form-group" style="float: initial;">
-                                <input ng-model="modeloMatematico.NomeModeloMatematico" type="text"
-                                    class="form-control" placeholder="Nome Modelo">
+                                <input ng-model="modeloMatematico.NomeModeloMatematico" type="text" class="form-control" placeholder="Nome Modelo">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <br />
+            <!-- Inserção de variáveis-->
             <div class="login-dp">
                 <div class="col-md-12 col-sm-12 col-lg-12 espacado">
-                    <form ng-submit="submitVariavel()" class="form" href="#" accept-charset="UTF-8" id="login-form">
+                    <form ng-submit="submitVariavel()" class="form" href="#" accept-charset="UTF-8">
                         <div class="form-group">
                             <div class="row">
-                                <div class="row">
-                                    <label>Inserção de Variáveis</label>
-                                </div>
-                                <div class="col-md-2">
-                                    <input ng-model="variavelAAdicionar.coeficiente" type="number"
-                                           step="0.01" class="form-control" placeholder="Coeficiente" required>
-                                </div>
-                                <div class="col-md-5">
-                                    <input ng-model="variavelAAdicionar.nomeVariavel" type="text"
-                                           class="form-control" placeholder="Nome da variável" required>
-                                </div>
-                                <div class="col-md-2 pull-right">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-block">adicionar variável</button>
+                                <div class="col-md-6" style="float: none;">
+                                    <div class="row">
+                                        <label>Inserção de Variáveis</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input ng-model="variavelAAdicionar.coeficiente" type="number" step="0.01" class="form-control ng-pristine ng-untouched ng-empty ng-valid-step ng-invalid ng-invalid-required"
+                                            placeholder="Coeficiente" required="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input ng-model="variavelAAdicionar.nomeVariavel" type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+                                            placeholder="Nome da variável" required="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-block">adicionar variável</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -55,116 +59,149 @@
                     </form>
                 </div>
             </div>
-
-            <div class="form-group" ng-repeat="(nomeVariavel, coeficiente) in modeloMatematico.Variaveis">
-                <div class="row">
-                    <p>    
-                    </p>
-                    <div class="col-md-2">
-                        <input ng-model="coeficiente" type="number"
-                                step="0.01" class="form-control" placeholder="Coeficiente" disabled>
-                    </div>
-                    <div class="col-md-5">
-                        <input ng-model="nomeVariavel" type="text"
-                                class="form-control" placeholder="Nome da variável" disabled>
-                    </div>
-                </div>
-            </div>
-
             <br />
+            <!-- Função objetivo -->
             <div class="login-dp">
                 <div class="col-md-12 col-sm-12 col-lg-12 espacado">
-                    <form ng-submit="adicionarRestricao()" class="form" href="#" accept-charset="UTF-8" id="login-form">
+                    <form class="form" href="#" accept-charset="UTF-8">
                         <div class="form-group">
                             <div class="row">
-                                <label>Restrições</label>
-                            </div>
-                            @*<div class="row">
-                            </div>*@
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                @*<div class="col-md-2">
-                                    <input ng-model="restricaoAAdicionar.NomeRestricao" type="text"
-                                           class="form-control" placeholder="Nome" required>
-                                </div>*@
-                                <div ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
-                                    <div style="width: 9%;" class="col-md-1">
-                                        <input ng-model="variavelDaRestricaoAAdicionar[$index].coeficiente" type="number"
-                                               step="0.01" class="form-control" placeholder="0">
-                                    </div>
-                                    <div style="padding:0;width:fit-content;margin-top: 1%;" class="col-md-1">
-                                        @*<select class="form-control" ng-model="variavelDaRestricaoAAdicionar[$index].nomeVariavel">
-                                            <option value="" selected>Selecione</option>
-                                            <option ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis"
-                                                    value="{{variavel}}">
-                                                {{variavel}}
-                                            </option>
-                                        </select>*@
-                                        {{variavel}}
-                                    </div>
-                                </div>
-                                <div style="width: 10%;" class="col-md-1">
-                                    <select ng-model="restricaoAAdicionar.Operador" class="form-control" required>
-                                        <option value="" selected>Selecione</option>
-                                        <option ng-repeat="(codigo, operador) in operadores" value="{{codigo}}">{{operador}}</option>
+                                <div class="col-md-8" style="float: none;">
+                                    <p>Função Objetivo -></p>
+                                    <select class="form-control" ng-model="modeloMatematico.Direcao">
+                                        <option ng-repeat="(codigo, descricao) in direcaoOptimizacao" value="{{codigo}}">
+                                            {{descricao}}
+                                        </option>
                                     </select>
+                                    <p>(Z) = </p>
+                                    <p ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
+                                        {{coeficiente}}{{variavel}} {{$index
+                                        < modeloMatematico.Variaveis.length ? '+' : ''}} </p>
                                 </div>
-                                <div class="col-md-1">
-                                    <input ng-model="restricaoAAdicionar.Expressao" type="number"
-                                           step="0.01" class="form-control" placeholder="Valor expressão" required>
-                                </div>
-                                <div class="col-md-2">
-                                    <button type="submit" class="btn btn-primary btn-block">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group" ng-repeat="(nome, coeff) in restricaoAAdicionar.Variaveis">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <input ng-model="coeff" type="number"
-                                           step="0.01" class="form-control" placeholder="Coeficiente" disabled>
-                                </div>
-                                <div class="col-md-5">
-                                    <input class="form-control" placeholder="Nome" ng-model="nome" disabled>
-                                </div>
-                            </div>
-                        </div>
-                        @*<div class="form-group">
-                            <div class="row">
-                            </div>
-                        </div>*@
-                        <div class="row">
-                            <div class="form-group" ng-repeat="restricao in modeloMatematico.Restricoes">
-                                <p style="display:inline-block;">{{restricao.NomeRestricao}}</p>
-                                <p style="display:inline-block;" ng-show="restricao.NomeRestricao">-></p>
-                                <p style="display:inline-block;" ng-repeat="(nome, coeff) in restricao.Variaveis">{{(coeff > 0) ? '+' : '-'}}&nbsp;{{coeff}} * {{nome}}</p>
-                                <p style="display:inline-block;">
-                                    {{operadores[restricao.Operador]}} {{restricao.Expressao}}
-                                </p>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
             <br />
+            <!-- Inserção de restrições / Restrições inseridas -->
             <div class="login-dp">
                 <div class="col-md-12 col-sm-12 col-lg-12 espacado">
-                    <form ng-submit="solucionarProblema()" class="form" href="#" accept-charset="UTF-8" id="login-form">
-                        <div class="row">
-                            <label>Objetivo</label>
+                    <!-- Inserção de restrições -->
+                    <form ng-submit="adicionarRestricao()" class="form" href="#" accept-charset="UTF-8">
+                        <div class="form-group">
+                            <div class="row">
+                                <label>Inserção de restrições</label>
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <form class="form" href="#" accept-charset="UTF-8">
+                                    <div class="col-md-12" style="float: none;">
+                                        <div style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
+                                            <input ng-model="restricaoAAdicionar.Variaveis[variavel]" type="number" step="0.01" class="form-control" placeholder="0">
+                                            <p>{{variavel}} {{$index
+                                                < modeloMatematico.Variaveis ? '+' : ''}}</p>
+                                        </div>
+                                        <div style="display: inline-block;">
+                                            <select ng-model="restricaoAAdicionar.Operador" class="form-control" required>
+                                                <option value="" selected>Selecione</option>
+                                                <option ng-repeat="(codigo, operador) in operadores" value="{{codigo}}">{{operador}}</option>
+                                            </select>
+                                        </div>
+                                        <div style="display: inline-block;">
+                                            <input ng-model="restricaoAAdicionar.Expressao" type="number" step="0.01" class="form-control" placeholder="Valor expressão"
+                                                required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block">Adicionar restrição</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </form>
+                    <div style="height: 1px; background-color:unset;" class="row">
+                    </div>
+                    <!-- Listagem de restrições / Restrições inseridas -->
+                    <form class="form" href="#" accept-charset="UTF-8">
+                        <div class="form-group">
+                            <div class="row">
+                                <label>Restrições inseridas</label>
+                            </div>
+                        </div>
+                        <div class="col-md-8" style="float: none;">
+                            <div class="form-group">
+                                <div class="row" ng-repeat="retricao in modeloMatematico.Restricoes track by $index">
+                                    <div style="display: inline-block;">
+                                        <p ng-repeat="(variavel, coeff) in restricao.Variaveis track by $index">
+                                            {{coeff}}{{variavel}} {{$index
+                                            < restricao.Variaveis.length ? '+' : ''}} </p>
+                                                <p>
+                                                    {{operadores[restricao.Operador]}} {{restricao.Expressao}}
+                                                </p>
+                                                <div style="margin-left: 15px;">
+                                                    <button type="button" ng-click="removerRestricao($index)" class="btn btn-danger btn-block">Remover</button>
+                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <br />
+            <!-- Modelo -->
+            <div class="login-dp">
+                <div class="col-md-12 col-sm-12 col-lg-12 espacado">
+                    <form class="form" href="#" accept-charset="UTF-8">
                         <div class="row">
-                            <div style="float:initial;" class="col-md-4 col-sm-4 col-lg-4 form-group">
-                                <select class="form-control" ng-model="modeloMatematico.Direcao" required>
-                                    <option value="" selected>Selecione</option>
-                                    <option ng-repeat="(codigo, descricao) in direcaoOptimizacao"
-                                            value="{{codigo}}">
+                            <h2>Modelo</h2>
+                        </div>
+                        <!-- Função objetivo -->
+                        <div ng-show="modeloMatematico.Variaveis > 0" class="row">
+                            <br />
+                            <br />
+                            <label>Variáveis</label>
+                        </div>
+                        <br />
+                        <div ng-show="modeloMatematico.Variaveis > 0" class="row">
+                            <div class="col-md-8" style="float: none;">
+                                <p>Função Objetivo -></p>
+                                <select class="form-control" ng-model="modeloMatematico.Direcao">
+                                    <option ng-repeat="(codigo, descricao) in direcaoOptimizacao" value="{{codigo}}">
                                         {{descricao}}
                                     </option>
                                 </select>
+                                <p>(Z) = </p>
+                                <p ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
+                                    {{coeficiente}}{{variavel}} {{$index
+                                    < modeloMatematico.Variaveis.length ? '+' : ''}} </p>
                             </div>
                         </div>
+                        <div ng-show="modeloMatematico.Restricoes > 0" class="row">
+                            <label>Sujeito a : </label>
+                        </div>
+                        <!-- Restrições -->
+                        <div class="row" ng-repeat="retricao in modeloMatematico.Restricoes track by $index">
+                            <div style="display: inline-block;">
+                                <p ng-repeat="(variavel, coeff) in restricao.Variaveis track by $index">
+                                    {{coeff}}{{variavel}} {{$index
+                                    < restricao.Variaveis.length ? '+' : ''}} </p>
+                                        <p>
+                                            {{operadores[restricao.Operador]}} {{restricao.Expressao}}
+                                        </p>
+                            </div>
+                            <div style="margin-left: 15px;">
+                                <button type="button" ng-click="removerRestricao($index)" class="btn btn-danger btn-block">Remover</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <br />
+            <!-- Resolver problema -->
+            <div class="login-dp">
+                <div class="col-md-12 col-sm-12 col-lg-12 espacado">
+                    <form ng-submit="solucionarProblema()" class="form" href="#" accept-charset="UTF-8">
                         <div class="row">
                             <div style="float:initial;" class="col-md-4 form-group">
                                 <button type="submit" class="btn btn-primary btn-block">Resolver</button>
@@ -174,6 +211,7 @@
                 </div>
             </div>
             <br />
+            <!-- Solução -->
             <div ng-hide="solucao == null" class="login-dp">
                 <div class="col-md-12 col-sm-12 col-lg-12 espacado">
                     <div class="row">
@@ -181,8 +219,7 @@
                     </div>
                     <div class="row">
                         <p>
-                            A função objetivo de {{direcaoOptimizacao[modeloMatematico.Direcao]}}
-                            teve como resultados:
+                            A função objetivo de {{direcaoOptimizacao[modeloMatematico.Direcao]}} teve como resultados:
                         </p>
                         <br />
                         <p ng-repeat="(name, value) in solucao.VariaveisResolvidas">
