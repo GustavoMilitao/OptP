@@ -51,7 +51,7 @@ function HomeController($scope, $http, $mdDialog) {
                 Expressao: 0.0
             };
         } else {
-            showAlert(ev, 'Atenção', 'Adicione ao menos um coeficiente para alguma das variáveis');
+            $scope.showAlert(ev, 'Atenção', 'Adicione ao menos um coeficiente para alguma das variáveis');
         }
     }
 
