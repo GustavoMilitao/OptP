@@ -170,7 +170,7 @@
                                         </select>
                                         <p style="display: inline-block;">(Z) = </p>
                                         <p style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
-                                            {{coeficiente}}{{variavel}} {{$index < Object.keys(modeloMatematico.Variaveis).length ? '+' : ''}}
+                                            {{coeficiente}}{{variavel}} {{numeroMenorQueLimite($index)}}
                                         </p>
                                     </div>
                                 </div>
@@ -197,13 +197,12 @@
                                     <div class="form" href="#" accept-charset="UTF-8">
                                         <div class="col-md-12" style="float: none;">
                                             <div style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
-                                                <div style="width: 34%;display: inline-block;">
+                                                <div style="width: 74px;display: inline-block;">
                                                     <input ng-model="restricaoAAdicionar.Variaveis[variavel]" type="number" step="0.01" class="form-control" placeholder="0">
                                                 </div>
                                                 <div style="display: inline-block;margin-left:4px;">
                                                     <p>
-                                                        {{variavel}} {{$index
-                                                    < modeloMatematico.Variaveis ? '+' : ''}}
+                                                        {{variavel}} {{numeroMenorQueLimite($index)}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -239,7 +238,7 @@
                                     <div class="row" ng-repeat="retricao in modeloMatematico.Restricoes track by $index">
                                         <div style="display: inline-block;">
                                             <p ng-repeat="(variavel, coeff) in restricao.Variaveis track by $index">
-                                                {{coeff}}{{variavel}} {{$index < restricao.Variaveis.length ? '+' : ''}}
+                                                {{coeff}}{{variavel}} {{numeroMenorQueLimite($index)}}
                                             </p>
                                             <p>
                                                 {{operadores[restricao.Operador]}} {{restricao.Expressao}}
@@ -282,7 +281,7 @@
                                     </select>
                                     <p>(Z) = </p>
                                     <p ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
-                                        {{coeficiente}}{{variavel}} {{$index < Object.keys(modeloMatematico.Variaveis).length ? '+' : ''}}
+                                        {{coeficiente}}{{variavel}} {{numeroMenorQueLimite($index)}}
                                     </p>
                                 </div>
                             </div>

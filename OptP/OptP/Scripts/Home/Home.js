@@ -59,6 +59,10 @@ function HomeController($scope, $http, $mdDialog) {
         $scope.modeloMatematico.Restricoes.splice(index, 1);
     }
 
+    $scope.numeroMenorQueLimite = function(numero) {
+        return Object.keys(modeloMatematico.Variaveis).length ? '+' : '';
+    }
+
     $scope.temAlgumCoeficiente = function () {
         var tem = false;
         Object.keys($scope.restricaoAAdicionar.Variaveis).forEach(function (elemento) {
