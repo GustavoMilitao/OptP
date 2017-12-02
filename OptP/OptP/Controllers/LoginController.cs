@@ -29,11 +29,11 @@ namespace OptP.Controllers
                     cookie.Expires = DateTime.Now;
                     cookie.Value = "";
                 }
-                return View("../Login/Index");
+                return View();
             }
             else
             {
-                return View();
+                return View("../Home/Index");
             }
         }
 
