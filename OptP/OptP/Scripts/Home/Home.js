@@ -96,6 +96,11 @@ function HomeController($scope, $http, $mdDialog) {
         );
     }
 
+
+    $scope.temVariaveis = function(){
+        return (Object.keys($scope.modeloMatematico.Variaveis).length > 0);
+    }
+
     $scope.submitVariavel = function () {
         $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)] =
             $scope.variavelAAdicionar.coeficiente;
