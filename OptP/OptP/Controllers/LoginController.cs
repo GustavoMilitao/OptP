@@ -39,7 +39,25 @@ namespace OptP.Controllers
 
         public ActionResult Register()
         {
-            return View("Register");
+            User user = null;
+            var cookie = Request.Cookies["loggedUser"];
+            if (cookie != null)
+            {
+                user = UserCore.Get(cookie.Value);
+            }
+            if (user == null)
+            {
+                if (cookie != null)
+                {
+                    cookie.Expires = DateTime.Now;
+                    cookie.Value = "";
+                }
+                return View("Register");
+            }
+            else
+            {
+                return View("../Home/Index");
+            }
         }
 
         [HttpPost]
