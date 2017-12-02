@@ -129,19 +129,19 @@
                                     <div class="row">
                                         <label>Inserção de Variáveis</label>
                                     </div>
-                                    <div style="display:inline-block">
+                                    <div class="col-md-4">
                                         <input oninvalid="this.setCustomValidity('Insira um coeficiente!')"
                                                oninput="setCustomValidity('')"
                                                ng-model="variavelAAdicionar.coeficiente" type="number" step="0.01" class="form-control"
                                                placeholder="Coeficiente" required="">
                                     </div>
-                                    <div style="display:inline-block">
+                                    <div class="col-md-4">
                                         <input oninvalid="this.setCustomValidity('Insira um nome para a variável!')"
                                                oninput="setCustomValidity('')"
                                                ng-model="variavelAAdicionar.nomeVariavel" type="text" class="form-control"
                                                placeholder="Nome da variável" required="">
                                     </div>
-                                    <div style="display:inline-block">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-block">adicionar variável</button>
                                         </div>
