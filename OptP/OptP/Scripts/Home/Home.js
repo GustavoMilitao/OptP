@@ -1,5 +1,5 @@
 ﻿angular
-    .module('app.optp', ['ngAnimate','ngAria','ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
+    .module('app.optp', ['ngAnimate', 'ngAria', 'ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
     .controller('HomeController', HomeController);
 
 function HomeController($scope, $http, $mdDialog) {
@@ -97,9 +97,11 @@ function HomeController($scope, $http, $mdDialog) {
     }
 
     $scope.submitVariavel = function () {
-        $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)] =
-            $scope.variavelAAdicionar.coeficiente;
-        $scope.variavelAAdicionar = {};
+        $scope.$apply(function () {
+            $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)] =
+                $scope.variavelAAdicionar.coeficiente;
+            $scope.variavelAAdicionar = {};
+        });
     }
 
     $scope.capitalize = function (str) {
@@ -125,7 +127,7 @@ function HomeController($scope, $http, $mdDialog) {
             }, function errorCallback(response) {
                 $scope.showAlert(ev, 'Erro', 'Falha na comunicação com o servidor.')
             });
-        }else{
+        } else {
             $scope.showAlert(ev, 'Erro', 'O modelo matemático não possui solução pois não há restrição para uma ou mais variáveis.')
         }
     }
