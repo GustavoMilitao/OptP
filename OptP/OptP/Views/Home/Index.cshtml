@@ -1,4 +1,11 @@
 ﻿<script src="~/Scripts/Home/Home.js"></script>
+<script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.5/angular-material.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+
 <div id="appoptp" ng-controller="HomeController">
     <!-- Sair -->
     <div class="row">
@@ -14,57 +21,70 @@
     </div>
     <div class="row">
         <div align="center" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-centered">
-            <!-- Nome do modelo -->
+            <!-- Explicação do sistema -->
             <div class="login-dp">
                 <div class="col-md-12 col-sm-12 col-lg-12 espacado">
-                    <div class="form-group">
+                    <div style="text-align: left; padding-left:30px;" class="form-group">
                         <div class="row">
                           <label>Passos para utilizar o sistema : </label>
                         </div>
+                        <br>
+                        <br>
                         <div class="row">
                             <label> 1 - Adicione um nome ao modelo. 
                                 </label> 
                         </div>
+                        <br>
                         <div class="row">
                             <label> 2 - Adicione as variáveis desejadas juntamente com seus coeficientes 
                                 (é necessário ao menos uma variável para permitir o prosseguimento da resolução) 
                                 </label> 
                         </div>
+                        <br>
                         <div class="row">
                             <label>  
                                 3 - Logo após a adição das variáveis, será possível visualizar e selecionar o objetivo da sua função. (f.o. -> Min/Max(Z) = ...)
                             </label>
                         </div>
+                        <br>
                         <div class="row">
                             <label>4 - Será possível visualizar a caixa de inserção de restrições </label>
                         </div>
+                        <br>
                         <div class="row">
                             <label>5 - Na caixa de inserção de restrições, 
                                 há a possibilidade de escolher o coeficiente para cada variável 
                                 (se não for adicionado coeficiente, a variável não é incluída na restrição)  </label>
                         </div>
+                        <br>
                         <div class="row">
                             <label>6 - Selecione o operador que deseja 
                                 (menor igual, menor, maior igual, maior ou igual), 
                                 defina o valor da expressão e clique em adicionar restrição </label>
                         </div>
+                        <br>
                         <div class="row">
                             <label>7 - Após adicionar a restrição, é possível visualizá-la na parte restrições inseridas. </label>
                         </div>
+                        <br>
                         <div class="row">
                             <label>8 - É possível remover a restrição clicando sobre o botão remover. </label>
                         </div>
+                        <br>
                         <div class="row">
                             <label>9 - É possível visualizar na penúltima caixa, um resumo do modelo descrito por você. </label>
                         </div>
+                        <br>
                         <div class="row">
                             <label>10 - Ao clicar sobre o botão resolver, aguarde alguns segundos e uma 
                                 nova caixa será mostrada abaixo deste botão com a resolução do modelo. </label>
                         </div>
+                        <br>
                         <div class="row">
                             <label>OBS: Reavalie seu modelo para certificar que tenha solução. 
                                 Modelos sem soluções apresentam resultado como 0 (o que pode acontecer também com modelos com solução mínima ou máxima iguais a 0)  </label>
                         </div>
+                        <br>
                     </div>
                 </div>
             </div>
