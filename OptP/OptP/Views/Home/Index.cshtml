@@ -163,7 +163,9 @@
                                 <div class="row">
                                     <div class="col-md-12" style="float: none; display: inline-block;">
                                         <p style="display: inline-block;">Função Objetivo -></p>
-                                        <select style="display: inline-block;width:23%;" class="form-control" ng-model="modeloMatematico.Direcao">
+                                        <select
+                                                ng-init="modeloMatematico.Direcao=direcaoOptimizacao[0]"
+                                                style="display: inline-block;width:23%;" class="form-control" ng-model="modeloMatematico.Direcao">
                                             <option ng-repeat="(codigo, descricao) in direcaoOptimizacao" value="{{codigo}}">
                                                 {{descricao}}
                                             </option>
@@ -207,7 +209,9 @@
                                                 </div>
                                             </div>
                                             <div style="display: inline-block;">
-                                                <select ng-model="restricaoAAdicionar.Operador" class="form-control">
+                                                <select 
+                                                        ng-init="restricaoAAdicionar.Operador=operadores[0]"
+                                                        ng-model="restricaoAAdicionar.Operador" class="form-control">
                                                     <option ng-repeat="(codigo, operador) in operadores" value="{{codigo}}">{{operador}}</option>
                                                 </select>
                                             </div>
@@ -243,7 +247,7 @@
                                             <p>
                                                 {{operadores[restricao.Operador]}} {{restricao.Expressao}}
                                             </p>
-                                            <div style="margin-left: 15px;">
+                                            <div style="margin-left: 15px;display: inline-block;">
                                                 <button type="button" ng-click="removerRestricao($index)" class="btn btn-danger btn-block">Remover</button>
                                             </div>
                                         </div>

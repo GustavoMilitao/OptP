@@ -11,6 +11,7 @@ namespace Entities
         MENOR_IGUAL = 0,
         MAIOR_IGUAL = 1,
         MENOR = 2,
-        MAIOR = 3
+        MAIOR = 3,
+        IGUAL = 4
     }
 }

@@ -20,7 +20,8 @@ function HomeController($scope, $http, $mdDialog) {
         0: "<=",
         1: ">=",
         2: "<",
-        3: ">"
+        3: ">",
+        4: "="
     }
 
     $scope.direcaoOptimizacao = {

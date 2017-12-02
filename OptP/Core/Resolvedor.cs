@@ -119,6 +119,10 @@ namespace Core
                     // Ex: 4x > 0
                     c = solver.MakeConstraint(r.Expressao + Math.Pow(1, -(15 - digits)), double.PositiveInfinity, r.NomeRestricao);
                     break;
+                case Operador.IGUAL:
+                    // Ex: 4x = 0
+                    c = solver.MakeConstraint(r.Expressao, r.Expressao, r.NomeRestricao);
+                    break;
             }
 
             return c;
