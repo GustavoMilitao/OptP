@@ -163,7 +163,7 @@
                                 <div class="row">
                                     <div class="col-md-12" style="float: none; display: inline-block;">
                                         <p style="display: inline-block;">Função Objetivo -></p>
-                                        <select style="display: inline-block;width:25%;" class="form-control" ng-model="modeloMatematico.Direcao">
+                                        <select style="display: inline-block;width:23%;" class="form-control" ng-model="modeloMatematico.Direcao">
                                             <option ng-repeat="(codigo, descricao) in direcaoOptimizacao" value="{{codigo}}">
                                                 {{descricao}}
                                             </option>
@@ -198,8 +198,8 @@
                                     <div class="form" href="#" accept-charset="UTF-8">
                                         <div class="col-md-12" style="float: none;">
                                             <div style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
-                                                <div style="display: inline-block;">
-                                                    <input style="width: 13%;" ng-model="restricaoAAdicionar.Variaveis[variavel]" type="number" step="0.01" class="form-control" placeholder="0">
+                                                <div style="width: 34%;display: inline-block;">
+                                                    <input ng-model="restricaoAAdicionar.Variaveis[variavel]" type="number" step="0.01" class="form-control" placeholder="0">
                                                 </div>
                                                 <div style="display: inline-block;margin-left:4px;">
                                                     <p>
@@ -213,8 +213,8 @@
                                                     <option ng-repeat="(codigo, operador) in operadores" value="{{codigo}}">{{operador}}</option>
                                                 </select>
                                             </div>
-                                            <div style="display: inline-block;">
-                                                <input style="width: 13%;" ng-model="restricaoAAdicionar.Expressao" type="number" step="0.01" class="form-control" placeholder="Valor expressão"
+                                            <div style="width:13%;display: inline-block;">
+                                                <input ng-model="restricaoAAdicionar.Expressao" type="number" step="0.01" class="form-control" placeholder="Valor expressão"
                                                        oninvalid="this.setCustomValidity('É obrigatório selecionar o valor da expressão')"
                                                        oninput="setCustomValidity('')"
                                                        required>
