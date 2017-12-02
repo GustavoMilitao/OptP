@@ -271,15 +271,16 @@
                             <!-- Função objetivo -->
                             <br />
                             <div ng-show="temVariaveis()" class="row">
-                                <div class="col-md-8" style="float: none;">
-                                    <p>Função Objetivo -></p>
-                                    <select class="form-control" ng-model="modeloMatematico.Direcao">
+                                <div class="col-md-12" style="float: none; display: inline-block;">
+                                    <p style="display: inline-block;">Função Objetivo -></p>
+                                    <select ng-init="modeloMatematico.Direcao=direcaoOptimizacao[0]"
+                                            style="display: inline-block;width:23%;" class="form-control" ng-model="modeloMatematico.Direcao">
                                         <option ng-repeat="(codigo, descricao) in direcaoOptimizacao" value="{{codigo}}">
                                             {{descricao}}
                                         </option>
                                     </select>
-                                    <p>(Z) = </p>
-                                    <p ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
+                                    <p style="display: inline-block;">(Z) = </p>
+                                    <p style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
                                         {{coeficiente}}{{variavel}} {{numeroMenorQueLimite($index)}}
                                     </p>
                                 </div>

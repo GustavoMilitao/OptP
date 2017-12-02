@@ -7,13 +7,13 @@ function HomeController($scope, $http, $mdDialog) {
         NomeModeloMatematico: "",
         Variaveis: {},
         Restricoes: [],
-        Direcao: "",
+        Direcao: 0,
     };
     $scope.variavelAAdicionar = {};
     $scope.restricaoAAdicionar = {
         NomeRestricao: "",
         Variaveis: {},
-        Operador: "",
+        Operador: 0,
         Expressao: 0.0
     };
     $scope.operadores = {
@@ -48,7 +48,7 @@ function HomeController($scope, $http, $mdDialog) {
             $scope.restricaoAAdicionar = {
                 NomeRestricao: "",
                 Variaveis: {},
-                Operador: "",
+                Operador: 0,
                 Expressao: 0.0
             };
         } else {
