@@ -1,5 +1,5 @@
 ﻿angular
-    .module('app.optp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
+    .module('app.optp', ['ngAnimate','ngAria','ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
     .controller('HomeController', HomeController);
 
 function HomeController($scope, $http, $mdDialog) {
