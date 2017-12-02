@@ -60,7 +60,7 @@ function HomeController($scope, $http, $mdDialog) {
     }
 
     $scope.numeroMenorQueLimite = function(numero) {
-        return Object.keys($scope.modeloMatematico.Variaveis).length ? '+' : '';
+        return numero < Object.keys($scope.modeloMatematico.Variaveis).length -1 ? '+' : '';
     }
 
     $scope.temAlgumCoeficiente = function () {
