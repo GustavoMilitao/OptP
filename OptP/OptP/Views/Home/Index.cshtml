@@ -269,13 +269,8 @@
                                 <label>Dados do modelo inserido</label>
                             </div>
                             <!-- Função objetivo -->
-                            <div ng-show="modeloMatematico.Variaveis > 0" class="row">
-                                <br />
-                                <br />
-                                <label>Variáveis</label>
-                            </div>
                             <br />
-                            <div ng-show="modeloMatematico.Variaveis > 0" class="row">
+                            <div ng-show="temVariaveis()" class="row">
                                 <div class="col-md-8" style="float: none;">
                                     <p>Função Objetivo -></p>
                                     <select class="form-control" ng-model="modeloMatematico.Direcao">
