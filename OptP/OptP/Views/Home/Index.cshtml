@@ -1,13 +1,13 @@
-﻿ <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+﻿<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
 <script src="http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 
-  <!-- Angular Material Library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>  
+<!-- Angular Material Library -->
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 <script src="~/Scripts/Home/Home.js"></script>
 
 <div id="appoptp" ng-controller="HomeController">
@@ -30,23 +30,25 @@
                 <div class="col-md-12 col-sm-12 col-lg-12 espacado">
                     <div style="text-align: left; padding:30px;" class="form-group">
                         <div class="row">
-                          <label>Passos para utilizar o sistema : </label>
+                            <label>Passos para utilizar o sistema : </label>
                         </div>
                         <br>
                         <br>
                         <div class="row">
-                            <label> 1 - Adicione um nome ao modelo. 
-                                </label> 
+                            <label>
+                                1 - Adicione um nome ao modelo.
+                            </label>
                         </div>
                         <br>
                         <div class="row">
-                            <label> 2 - Adicione as variáveis desejadas juntamente com seus coeficientes 
-                                (é necessário ao menos uma variável para permitir o prosseguimento da resolução) 
-                                </label> 
+                            <label>
+                                2 - Adicione as variáveis desejadas juntamente com seus coeficientes
+                                (é necessário ao menos uma variável para permitir o prosseguimento da resolução)
+                            </label>
                         </div>
                         <br>
                         <div class="row">
-                            <label>  
+                            <label>
                                 3 - Logo após a adição das variáveis, será possível visualizar e selecionar o objetivo da sua função. (f.o. -> Min/Max(Z) = ...)
                             </label>
                         </div>
@@ -56,15 +58,19 @@
                         </div>
                         <br>
                         <div class="row">
-                            <label>5 - Na caixa de inserção de restrições, 
-                                há a possibilidade de escolher o coeficiente para cada variável 
-                                (se não for adicionado coeficiente, a variável não é incluída na restrição)  </label>
+                            <label>
+                                5 - Na caixa de inserção de restrições,
+                                há a possibilidade de escolher o coeficiente para cada variável
+                                (se não for adicionado coeficiente, a variável não é incluída na restrição)
+                            </label>
                         </div>
                         <br>
                         <div class="row">
-                            <label>6 - Selecione o operador que deseja 
-                                (menor igual, menor, maior igual, maior ou igual), 
-                                defina o valor da expressão e clique em adicionar restrição </label>
+                            <label>
+                                6 - Selecione o operador que deseja
+                                (menor igual, menor, maior igual, maior ou igual),
+                                defina o valor da expressão e clique em adicionar restrição
+                            </label>
                         </div>
                         <br>
                         <div class="row">
@@ -80,13 +86,17 @@
                         </div>
                         <br>
                         <div class="row">
-                            <label>10 - Ao clicar sobre o botão resolver, aguarde alguns segundos e uma 
-                                nova caixa será mostrada abaixo deste botão com a resolução do modelo. </label>
+                            <label>
+                                10 - Ao clicar sobre o botão resolver, aguarde alguns segundos e uma
+                                nova caixa será mostrada abaixo deste botão com a resolução do modelo.
+                            </label>
                         </div>
                         <br>
                         <div class="row">
-                            <label>OBS: Reavalie seu modelo para certificar que tenha solução. 
-                                Modelos sem soluções apresentam resultado como 0 (o que pode acontecer também com modelos com solução mínima ou máxima iguais a 0)  </label>
+                            <label>
+                                OBS: Reavalie seu modelo para certificar que tenha solução.
+                                Modelos sem soluções apresentam resultado como 0 (o que pode acontecer também com modelos com solução mínima ou máxima iguais a 0)
+                            </label>
                         </div>
                         <br>
                     </div>
@@ -119,21 +129,19 @@
                                     <div class="row">
                                         <label>Inserção de Variáveis</label>
                                     </div>
-                                    <div class="col-md-4">
-                                        <input 
-                                        oninvalid="this.setCustomValidity('Insira um coeficiente!')"
-                                        oninput="setCustomValidity('')"
-                                        ng-model="variavelAAdicionar.coeficiente" type="number" step="0.01" class="form-control"
-                                            placeholder="Coeficiente" required="">
+                                    <div style="display:inline-block">
+                                        <input oninvalid="this.setCustomValidity('Insira um coeficiente!')"
+                                               oninput="setCustomValidity('')"
+                                               ng-model="variavelAAdicionar.coeficiente" type="number" step="0.01" class="form-control"
+                                               placeholder="Coeficiente" required="">
                                     </div>
-                                    <div class="col-md-4">
-                                        <input 
-                                        oninvalid="this.setCustomValidity('Insira um nome para a variável!')"
-                                        oninput="setCustomValidity('')"
-                                        ng-model="variavelAAdicionar.nomeVariavel" type="text" class="form-control"
-                                            placeholder="Nome da variável" required="">
+                                    <div style="display:inline-block">
+                                        <input oninvalid="this.setCustomValidity('Insira um nome para a variável!')"
+                                               oninput="setCustomValidity('')"
+                                               ng-model="variavelAAdicionar.nomeVariavel" type="text" class="form-control"
+                                               placeholder="Nome da variável" required="">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div style="display:inline-block">
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-block">adicionar variável</button>
                                         </div>
@@ -163,7 +171,8 @@
                                         <p style="display: inline-block;">(Z) = </p>
                                         <p style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
                                             {{coeficiente}}{{variavel}} {{$index
-                                            < modeloMatematico.Variaveis.length ? '+' : ''}} </p>
+                                            < modeloMatematico.Variaveis.length ? '+' : ''}}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -186,29 +195,35 @@
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <form class="form" href="#" accept-charset="UTF-8">
+                                    <div class="form" href="#" accept-charset="UTF-8">
                                         <div class="col-md-12" style="float: none;">
-                                            <div class="col-md-1" style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
-                                                <input ng-model="restricaoAAdicionar.Variaveis[variavel]" type="number" step="0.01" class="form-control" placeholder="0">
-                                                <p>{{variavel}} {{$index
-                                                    < modeloMatematico.Variaveis ? '+' : ''}}</p>
+                                            <div style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
+                                                <div style="display: inline-block;">
+                                                    <input style="width: 13%;" ng-model="restricaoAAdicionar.Variaveis[variavel]" type="number" step="0.01" class="form-control" placeholder="0">
+                                                </div>
+                                                <div style="display: inline-block;margin-left:4px;">
+                                                    <p>
+                                                        {{variavel}} {{$index
+                                                    < modeloMatematico.Variaveis ? '+' : ''}}
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="col-md-1" style="display: inline-block;">
+                                            <div style="display: inline-block;">
                                                 <select ng-model="restricaoAAdicionar.Operador" class="form-control">
                                                     <option ng-repeat="(codigo, operador) in operadores" value="{{codigo}}">{{operador}}</option>
                                                 </select>
                                             </div>
-                                            <div class="col-md-4" style="display: inline-block;">
-                                                <input ng-model="restricaoAAdicionar.Expressao" type="number" step="0.01" class="form-control" placeholder="Valor expressão"
-                                                oninvalid="this.setCustomValidity('É obrigatório selecionar o valor da expressão')"
-                                                oninput="setCustomValidity('')"
-                                                    required>
+                                            <div style="display: inline-block;">
+                                                <input style="width: 13%;" ng-model="restricaoAAdicionar.Expressao" type="number" step="0.01" class="form-control" placeholder="Valor expressão"
+                                                       oninvalid="this.setCustomValidity('É obrigatório selecionar o valor da expressão')"
+                                                       oninput="setCustomValidity('')"
+                                                       required>
                                             </div>
                                             <div style="display: inline-block;">
                                                 <button type="submit" class="btn btn-primary btn-block">Adicionar restrição</button>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -226,13 +241,14 @@
                                         <div style="display: inline-block;">
                                             <p ng-repeat="(variavel, coeff) in restricao.Variaveis track by $index">
                                                 {{coeff}}{{variavel}} {{$index
-                                                < restricao.Variaveis.length ? '+' : ''}} </p>
-                                                    <p>
-                                                        {{operadores[restricao.Operador]}} {{restricao.Expressao}}
-                                                    </p>
-                                                    <div style="margin-left: 15px;">
-                                                        <button type="button" ng-click="removerRestricao($index)" class="btn btn-danger btn-block">Remover</button>
-                                                    </div>
+                                                < restricao.Variaveis.length ? '+' : ''}}
+                                            </p>
+                                            <p>
+                                                {{operadores[restricao.Operador]}} {{restricao.Expressao}}
+                                            </p>
+                                            <div style="margin-left: 15px;">
+                                                <button type="button" ng-click="removerRestricao($index)" class="btn btn-danger btn-block">Remover</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -269,7 +285,8 @@
                                     <p>(Z) = </p>
                                     <p ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
                                         {{coeficiente}}{{variavel}} {{$index
-                                        < modeloMatematico.Variaveis.length ? '+' : ''}} </p>
+                                        < modeloMatematico.Variaveis.length ? '+' : ''}}
+                                    </p>
                                 </div>
                             </div>
                             <div ng-show="modeloMatematico.Restricoes > 0" class="row">
@@ -280,10 +297,11 @@
                                 <div style="display: inline-block;">
                                     <p ng-repeat="(variavel, coeff) in restricao.Variaveis track by $index">
                                         {{coeff}}{{variavel}} {{$index
-                                        < restricao.Variaveis.length ? '+' : ''}} </p>
-                                            <p>
-                                                {{operadores[restricao.Operador]}} {{restricao.Expressao}}
-                                            </p>
+                                        < restricao.Variaveis.length ? '+' : ''}}
+                                    </p>
+                                    <p>
+                                        {{operadores[restricao.Operador]}} {{restricao.Expressao}}
+                                    </p>
                                 </div>
                                 <div style="margin-left: 15px;">
                                     <button type="button" ng-click="removerRestricao($index)" class="btn btn-danger btn-block">Remover</button>
