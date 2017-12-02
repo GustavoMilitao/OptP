@@ -57,9 +57,11 @@ namespace Core
                 // Ex: 5 (coeficiente) * cervejaPilsen (variável)
                 objective.SetCoefficient(variavel, v.Value);
             }
+
+
             // Definindo se a função é maximização ou minimização de acordo
             // com o enum definido no modelo
-            if(modelo.Direcao == DirecaoOptimizacao.MAXIMIZACAO)
+            if (modelo.Direcao == DirecaoOptimizacao.MAXIMIZACAO)
             {
                 objective.SetMaximization();
             }
@@ -94,6 +96,13 @@ namespace Core
                 // Ex : 2x + 5y <= 50
                 //    |ESQUERDO|direito|
                 SetCoeficientesRestricao(c, r.Variaveis, variaveisModelo);
+            }
+            // Não negatividade
+            foreach (var variable in variaveisModelo)
+            {
+                // Não negatividade
+                var n = solver.MakeConstraint(0, double.PositiveInfinity, " Não negatividade" + variable.Name());
+                n.SetCoefficient(variable, 1);
             }
         }
 

@@ -1,5 +1,5 @@
 ﻿angular
-    .module('app.optp', ['ngAnimate','ngAria','ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
+    .module('app.optp', ['ngAnimate', 'ngAria', 'ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
     .controller('HomeController', HomeController);
 
 function HomeController($scope, $http, $mdDialog) {
@@ -7,13 +7,13 @@ function HomeController($scope, $http, $mdDialog) {
         NomeModeloMatematico: "",
         Variaveis: {},
         Restricoes: [],
-        Direcao: 0,
+        Direcao: "0",
     };
     $scope.variavelAAdicionar = {};
     $scope.restricaoAAdicionar = {
         NomeRestricao: "",
         Variaveis: {},
-        Operador: 0,
+        Operador: "0",
         Expressao: 0.0
     };
     $scope.operadores = {
@@ -48,7 +48,7 @@ function HomeController($scope, $http, $mdDialog) {
             $scope.restricaoAAdicionar = {
                 NomeRestricao: "",
                 Variaveis: {},
-                Operador: 0,
+                Operador: "0",
                 Expressao: 0.0
             };
         } else {
@@ -60,8 +60,12 @@ function HomeController($scope, $http, $mdDialog) {
         $scope.modeloMatematico.Restricoes.splice(index, 1);
     }
 
-    $scope.numeroMenorQueLimite = function(numero) {
-        return numero < Object.keys($scope.modeloMatematico.Variaveis).length -1 ? '+' : '';
+    $scope.numeroMenorQueLimite = function (numero) {
+        return numero < Object.keys($scope.modeloMatematico.Variaveis).length - 1 ? '+' : '';
+    }
+
+    $scope.numeroMenorQueLimiteRestricao = function (restricao, numero) {
+        return numero < Object.keys(restricao.Variaveis).length - 1 ? '+' : '';
     }
 
     $scope.temAlgumCoeficiente = function () {
@@ -77,7 +81,7 @@ function HomeController($scope, $http, $mdDialog) {
 
     $scope.haSolucao = function () {
         return Object.keys($scope.modeloMatematico.Variaveis).every(function (variavelModelo) {
-            $scope.modeloMatematico.Restricoes.some(function (restricaoModelo) {
+            return $scope.modeloMatematico.Restricoes.some(function (restricaoModelo) {
                 return Object.keys(restricaoModelo.Variaveis).some(function (variavelRestricao) {
                     return variavelModelo === variavelRestricao;
                 });
@@ -102,8 +106,16 @@ function HomeController($scope, $http, $mdDialog) {
     }
 
 
-    $scope.temVariaveis = function(){
+    $scope.temVariaveis = function () {
         return (Object.keys($scope.modeloMatematico.Variaveis).length > 0);
+    }
+
+    $scope.getVarKeys = function (restricao) {
+        return Object.keys(restricao.Variaveis);
+    }
+
+    $scope.temRestricoes = function () {
+        return $scope.modeloMatematico.Restricoes.length > 0;
     }
 
     $scope.submitVariavel = function () {
@@ -121,6 +133,7 @@ function HomeController($scope, $http, $mdDialog) {
     }
 
     $scope.solucionarProblema = function (ev) {
+        $scope.solucao = null;
         if ($scope.haSolucao()) {
             $http({
                 method: 'POST',
@@ -135,7 +148,7 @@ function HomeController($scope, $http, $mdDialog) {
             }, function errorCallback(response) {
                 $scope.showAlert(ev, 'Erro', 'Falha na comunicação com o servidor.')
             });
-        }else{
+        } else {
             $scope.showAlert(ev, 'Erro', 'O modelo matemático não possui solução pois não há restrição para uma ou mais variáveis.')
         }
     }

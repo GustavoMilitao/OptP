@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 <script src="~/Scripts/Home/Home.js"></script>
 
-<div id="appoptp" ng-controller="HomeController">
+<div ng-cloak class="dialogdemoBasicUsage" id="appoptp" ng-controller="HomeController">
     <!-- Sair -->
     <div class="row">
         <div style="margin-bottom: 0 !important;" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-centered">
@@ -60,7 +60,7 @@
                         <div class="row">
                             <label>
                                 5 - Na caixa de inserção de restrições,
-                                há a possibilidade de escolher o coeficiente para cada variável
+                                há a possibilidade de escolher o nome da restrição, o coeficiente para cada variável
                                 (se não for adicionado coeficiente, a variável não é incluída na restrição)
                             </label>
                         </div>
@@ -125,7 +125,7 @@
                     <form ng-submit="submitVariavel()" class="form" href="#" accept-charset="UTF-8">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-10" style="float: none;">
+                                <div class="col-md-12" style="float: none;">
                                     <div class="row">
                                         <label>Inserção de Variáveis</label>
                                     </div>
@@ -138,12 +138,12 @@
                                     <div class="col-md-4">
                                         <input oninvalid="this.setCustomValidity('Insira um nome para a variável!')"
                                                oninput="setCustomValidity('')"
-                                               ng-model="variavelAAdicionar.nomeVariavel" type="text" class="form-control"
+                                               ng-model="variavelAAdicionar.nomeVariavel" type="text" class="form-control text-center"
                                                placeholder="Nome da variável" required="">
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block">adicionar variável</button>
+                                            <button style="width: 100%;" type="submit" class="btn btn-primary btn-block">adicionar variável</button>
                                         </div>
                                     </div>
                                 </div>
@@ -162,10 +162,8 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-12" style="float: none; display: inline-block;">
-                                        <p style="display: inline-block;">Função Objetivo -></p>
-                                        <select
-                                                ng-init="modeloMatematico.Direcao=direcaoOptimizacao[0]"
-                                                style="display: inline-block;width:23%;" class="form-control" ng-model="modeloMatematico.Direcao">
+                                        <label style="display: inline-block;">Função Objetivo -></label>
+                                        <select style="display: inline-block;width:23%;" class="form-control" ng-model="modeloMatematico.Direcao">
                                             <option ng-repeat="(codigo, descricao) in direcaoOptimizacao" value="{{codigo}}">
                                                 {{descricao}}
                                             </option>
@@ -196,6 +194,14 @@
                             </div>
                             <div class="form-group">
                                 <div class="row">
+                                    <input ng-model="restricaoAAdicionar.NomeRestricao"
+                                           oninvalid="this.setCustomValidity('É obrigatório informar o nome da restrição')"
+                                           oninput="setCustomValidity('')" required
+                                           type="text" class="form-control text-center" placeholder="nome da restrição">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
                                     <div class="form" href="#" accept-charset="UTF-8">
                                         <div class="col-md-12" style="float: none;">
                                             <div style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
@@ -209,9 +215,7 @@
                                                 </div>
                                             </div>
                                             <div style="display: inline-block;">
-                                                <select 
-                                                        ng-init="restricaoAAdicionar.Operador=operadores[0]"
-                                                        ng-model="restricaoAAdicionar.Operador" class="form-control">
+                                                <select ng-model="restricaoAAdicionar.Operador" class="form-control">
                                                     <option ng-repeat="(codigo, operador) in operadores" value="{{codigo}}">{{operador}}</option>
                                                 </select>
                                             </div>
@@ -222,7 +226,7 @@
                                                        required>
                                             </div>
                                             <div style="display: inline-block;">
-                                                <button type="submit" class="btn btn-primary btn-block">Adicionar restrição</button>
+                                                <button style="width: 100%;" type="submit" class="btn btn-primary btn-block">Adicionar restrição</button>
                                             </div>
                                         </div>
                                     </div>
@@ -230,25 +234,27 @@
                             </div>
                         </form>
                         <!-- Listagem de restrições / Restrições inseridas -->
-                        <form ng-show="Object.keys(modeloMatematico.Variaveis).length > 0" class="form" href="#" accept-charset="UTF-8">
+                        <form ng-show="temRestricoes()" class="form" href="#" accept-charset="UTF-8">
+                            <br />
                             <div style="height: 2px; background-color:black;" class="row"></div>
-                            <div class="form-group">
+                            <div style="margin-top:1%;" class="form-group">
                                 <div class="row">
                                     <label>Restrições inseridas</label>
                                 </div>
                             </div>
-                            <div class="col-md-8" style="float: none;">
+                            <div class="col-md-12" style="float: none;">
                                 <div class="form-group">
-                                    <div class="row" ng-repeat="retricao in modeloMatematico.Restricoes track by $index">
+                                    <div class="row" ng-repeat="restricao in modeloMatematico.Restricoes track by $index">
                                         <div style="display: inline-block;">
-                                            <p ng-repeat="(variavel, coeff) in restricao.Variaveis track by $index">
-                                                {{coeff}}{{variavel}} {{numeroMenorQueLimite($index)}}
+                                            <label>{{restricao.NomeRestricao}} : </label>
+                                            <p style="display:inline-block;" ng-repeat="variavel in getVarKeys(restricao) track by $index">
+                                                {{restricao.Variaveis[variavel]}}{{variavel}} {{numeroMenorQueLimiteRestricao(restricao, $index)}}
                                             </p>
-                                            <p>
+                                            <p style="display:inline-block;">
                                                 {{operadores[restricao.Operador]}} {{restricao.Expressao}}
                                             </p>
                                             <div style="margin-left: 15px;display: inline-block;">
-                                                <button type="button" ng-click="removerRestricao($index)" class="btn btn-danger btn-block">Remover</button>
+                                                <button style="width: 100%;" type="button" ng-click="removerRestricao($index)" class="btn btn-danger btn-block">Remover</button>
                                             </div>
                                         </div>
                                     </div>
@@ -271,36 +277,36 @@
                             <!-- Função objetivo -->
                             <br />
                             <div ng-show="temVariaveis()" class="row">
-                                <div class="col-md-12" style="float: none; display: inline-block;">
-                                    <p style="display: inline-block;">Função Objetivo -></p>
-                                    <select ng-init="modeloMatematico.Direcao=direcaoOptimizacao[0]"
-                                            style="display: inline-block;width:23%;" class="form-control" ng-model="modeloMatematico.Direcao">
-                                        <option ng-repeat="(codigo, descricao) in direcaoOptimizacao" value="{{codigo}}">
-                                            {{descricao}}
-                                        </option>
-                                    </select>
-                                    <p style="display: inline-block;">(Z) = </p>
-                                    <p style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
-                                        {{coeficiente}}{{variavel}} {{numeroMenorQueLimite($index)}}
-                                    </p>
+                                <div class="form-group">
+                                    <div class="col-md-12" style="float: none; display: inline-block;">
+                                        <label style="display: inline-block;">Função Objetivo -></label><p style="display: inline-block;">{{direcaoOptimizacao[modeloMatematico.Direcao]}}</p>
+                                        <p style="display: inline-block;">(Z) = </p>
+                                        <p style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
+                                            {{coeficiente}}{{variavel}} {{numeroMenorQueLimite($index)}}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div ng-show="modeloMatematico.Restricoes > 0" class="row">
+                            <div class="row">
                                 <label>Sujeito a : </label>
                             </div>
                             <!-- Restrições -->
-                            <div class="row" ng-repeat="retricao in modeloMatematico.Restricoes track by $index">
-                                <div style="display: inline-block;">
-                                    <p ng-repeat="(variavel, coeff) in restricao.Variaveis track by $index">
-                                        {{coeff}}{{variavel}} {{$index
-                                        < restricao.Variaveis.length ? '+' : ''}}
-                                    </p>
-                                    <p>
-                                        {{operadores[restricao.Operador]}} {{restricao.Expressao}}
-                                    </p>
+                            <div class="form-group">
+                                <div class="row" ng-repeat="restricao in modeloMatematico.Restricoes track by $index">
+                                    <div style="display: inline-block;">
+                                        <label>{{restricao.NomeRestricao}} : </label>
+                                        <p style="display:inline-block;" ng-repeat="variavel in getVarKeys(restricao) track by $index">
+                                            {{restricao.Variaveis[variavel]}}{{variavel}} {{numeroMenorQueLimiteRestricao(restricao, $index)}}
+                                        </p>
+                                        <p style="display:inline-block;">
+                                            {{operadores[restricao.Operador]}} {{restricao.Expressao}}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div style="margin-left: 15px;">
-                                    <button type="button" ng-click="removerRestricao($index)" class="btn btn-danger btn-block">Remover</button>
+                                <div ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index" class="row">
+                                    <p style="display: inline-block;">
+                                        {{variavel}} >= 0
+                                    </p>
                                 </div>
                             </div>
                         </form>
@@ -315,7 +321,7 @@
                         <form ng-submit="solucionarProblema($event)" class="form" href="#" accept-charset="UTF-8">
                             <div class="row">
                                 <div style="float:initial;" class="col-md-4 form-group">
-                                    <button type="submit" class="btn btn-primary btn-block">Resolver</button>
+                                    <button style="width: 100%;" type="submit" class="btn btn-primary btn-block">Resolver</button>
                                 </div>
                             </div>
                         </form>
