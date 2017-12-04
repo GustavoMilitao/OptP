@@ -142,9 +142,9 @@ function HomeController($scope, $http, $mdDialog) {
     }
 
     $scope.submitVariavel = function () {
-        if (!$scope.restricaoAAdicionar.Variaveis[elemento]
-            || $scope.restricaoAAdicionar.Variaveis[elemento] == ""
-            || $scope.restricaoAAdicionar.Variaveis[elemento] == null) {
+        if (!$scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)]
+            || $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)] == ""
+            || $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)] == null) {
             delete $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)];
         }
         else {
