@@ -57,7 +57,7 @@ function HomeController($scope, $http, $mdDialog) {
         }
     }
 
-    $scope.reiniciarModelo = function(){
+    $scope.reiniciarModelo = function () {
         var r = confirm("Deseja mesmo reiniciar o modelo?");
         if (r) {
             $scope.modeloMatematico = {
@@ -92,12 +92,12 @@ function HomeController($scope, $http, $mdDialog) {
         return tem;
     }
 
-    $scope.removerVariaveisComCoeficientesInvalidos = function(){
+    $scope.removerVariaveisComCoeficientesInvalidos = function () {
         Object.keys($scope.restricaoAAdicionar.Variaveis).forEach(function (elemento) {
             if (!$scope.restricaoAAdicionar.Variaveis[elemento]
                 || $scope.restricaoAAdicionar.Variaveis[elemento] == ""
                 || $scope.restricaoAAdicionar.Variaveis[elemento] == null) {
-                    delete $scope.restricaoAAdicionar.Variaveis[elemento];  
+                delete $scope.restricaoAAdicionar.Variaveis[elemento];
             }
         });
     }
@@ -142,8 +142,15 @@ function HomeController($scope, $http, $mdDialog) {
     }
 
     $scope.submitVariavel = function () {
-        $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)] =
-            $scope.variavelAAdicionar.coeficiente;
+        if (!$scope.restricaoAAdicionar.Variaveis[elemento]
+            || $scope.restricaoAAdicionar.Variaveis[elemento] == ""
+            || $scope.restricaoAAdicionar.Variaveis[elemento] == null) {
+            delete $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)];
+        }
+        else {
+            $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)] =
+                $scope.variavelAAdicionar.coeficiente;
+        }
         $scope.variavelAAdicionar = {};
     }
 
