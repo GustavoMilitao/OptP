@@ -76,7 +76,7 @@ namespace OptP.Controllers
                     cookie.Expires = DateTime.Now;
                     cookie.Value = "";
                 }
-                return Json(new { data = new { success = false, message = "Usuário inválido!" } });
+                return Json(new {  success = false, message = "Usuário inválido!" } );
             }
             else
             {

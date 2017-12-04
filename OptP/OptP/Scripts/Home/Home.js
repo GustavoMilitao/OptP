@@ -57,6 +57,18 @@ function HomeController($scope, $http, $mdDialog) {
         }
     }
 
+    $scope.reiniciarModelo = function(){
+        var r = confirm("Deseja mesmo reiniciar o modelo?");
+        if (r) {
+            $scope.modeloMatematico = {
+                NomeModeloMatematico: "",
+                Variaveis: {},
+                Restricoes: [],
+                Direcao: "0",
+            };
+        }
+    }
+
     $scope.removerRestricao = function (index) {
         $scope.modeloMatematico.Restricoes.splice(index, 1);
     }
