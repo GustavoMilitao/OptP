@@ -42,14 +42,15 @@
                         <br>
                         <div class="row">
                             <label>
-                                2 - Adicione as variáveis desejadas juntamente com seus coeficientes
-                                (é necessário ao menos uma variável para permitir o prosseguimento da resolução)
+                                2 - Adicione as variáveis desejadas juntamente com seus coeficientes (é necessário ao menos uma variável para permitir o
+                                prosseguimento da resolução)
                             </label>
                         </div>
                         <br>
                         <div class="row">
                             <label>
-                                3 - Logo após a adição das variáveis, será possível visualizar e selecionar o objetivo da sua função. (f.o. -> Min/Max(Z) = ...)
+                                3 - Logo após a adição das variáveis, será possível visualizar e selecionar o objetivo da sua função. (f.o. -> Min/Max(Z)
+                                = ...)
                             </label>
                         </div>
                         <br>
@@ -59,17 +60,15 @@
                         <br>
                         <div class="row">
                             <label>
-                                5 - Na caixa de inserção de restrições,
-                                há a possibilidade de escolher o nome da restrição, o coeficiente para cada variável
+                                5 - Na caixa de inserção de restrições, há a possibilidade de escolher o nome da restrição, o coeficiente para cada variável
                                 (se não for adicionado coeficiente, a variável não é incluída na restrição)
                             </label>
                         </div>
                         <br>
                         <div class="row">
                             <label>
-                                6 - Selecione o operador que deseja
-                                (menor igual, menor, maior igual, maior ou igual),
-                                defina o valor da expressão e clique em adicionar restrição
+                                6 - Selecione o operador que deseja (menor igual, menor, maior igual, maior ou igual), defina o valor da expressão e clique
+                                em adicionar restrição
                             </label>
                         </div>
                         <br>
@@ -87,15 +86,15 @@
                         <br>
                         <div class="row">
                             <label>
-                                10 - Ao clicar sobre o botão resolver, aguarde alguns segundos e uma
-                                nova caixa será mostrada abaixo deste botão com a resolução do modelo.
+                                10 - Ao clicar sobre o botão resolver, aguarde alguns segundos e uma nova caixa será mostrada abaixo deste botão com a resolução
+                                do modelo.
                             </label>
                         </div>
                         <br>
                         <div class="row">
                             <label>
-                                OBS: Reavalie seu modelo para certificar que tenha solução.
-                                Modelos sem soluções apresentam resultado como 0 (o que pode acontecer também com modelos com solução mínima ou máxima iguais a 0)
+                                OBS: Reavalie seu modelo para certificar que tenha solução. Modelos sem soluções apresentam resultado como 0 (o que pode
+                                acontecer também com modelos com solução mínima ou máxima iguais a 0)
                             </label>
                         </div>
                         <br>
@@ -127,19 +126,15 @@
                             <div class="row">
                                 <div class="col-md-12" style="float: none;">
                                     <div class="row">
-                                        <label>Inserção de Variáveis</label>
+                                        <label>Inserção de Variáveis na função objetivo</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input oninvalid="this.setCustomValidity('Insira um coeficiente!')"
-                                               oninput="setCustomValidity('')"
-                                               ng-model="variavelAAdicionar.coeficiente" type="number" step="0.01" class="form-control"
-                                               placeholder="Coeficiente" required="">
+                                        <input oninvalid="this.setCustomValidity('Insira um coeficiente!')" oninput="setCustomValidity('')" ng-model="variavelAAdicionar.coeficiente"
+                                            type="number" step="0.01" class="form-control" placeholder="Coeficiente" required="">
                                     </div>
                                     <div class="col-md-4">
-                                        <input oninvalid="this.setCustomValidity('Insira um nome para a variável!')"
-                                               oninput="setCustomValidity('')"
-                                               ng-model="variavelAAdicionar.nomeVariavel" type="text" class="form-control text-center"
-                                               placeholder="Nome da variável" required="">
+                                        <input oninvalid="this.setCustomValidity('Insira um nome para a variável!')" oninput="setCustomValidity('')" ng-model="variavelAAdicionar.nomeVariavel"
+                                            type="text" class="form-control text-center" placeholder="Nome da variável" required="">
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -194,10 +189,9 @@
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <input ng-model="restricaoAAdicionar.NomeRestricao"
-                                           oninvalid="this.setCustomValidity('É obrigatório informar o nome da restrição')"
-                                           oninput="setCustomValidity('')" required
-                                           type="text" class="form-control text-center" placeholder="nome da restrição">
+                                    <input ng-model="restricaoAAdicionar.NomeRestricao" oninvalid="this.setCustomValidity('É obrigatório informar o nome da restrição')"
+                                        oninput="setCustomValidity('')" required type="text" class="form-control text-center"
+                                        placeholder="nome da restrição">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -221,9 +215,8 @@
                                             </div>
                                             <div style="width:13%;display: inline-block;">
                                                 <input ng-model="restricaoAAdicionar.Expressao" type="number" step="0.01" class="form-control" placeholder="Valor expressão"
-                                                       oninvalid="this.setCustomValidity('É obrigatório selecionar o valor da expressão')"
-                                                       oninput="setCustomValidity('')"
-                                                       required>
+                                                    oninvalid="this.setCustomValidity('É obrigatório selecionar o valor da expressão')"
+                                                    oninput="setCustomValidity('')" required>
                                             </div>
                                             <div style="display: inline-block;">
                                                 <button style="width: 100%;" type="submit" class="btn btn-primary btn-block">Adicionar restrição</button>
@@ -272,14 +265,15 @@
                     <div class="col-md-12 col-sm-12 col-lg-12 espacado">
                         <form class="form" href="#" accept-charset="UTF-8">
                             <div class="row">
-                                <label>Dados do modelo inserido</label>
+                                <label>Dados do modelo {{modeloMatematico.NomeModeloMatematico}}</label>
                             </div>
                             <!-- Função objetivo -->
                             <br />
                             <div ng-show="temVariaveis()" class="row">
                                 <div class="form-group">
                                     <div class="col-md-12" style="float: none; display: inline-block;">
-                                        <label style="display: inline-block;">Função Objetivo -></label><p style="display: inline-block;">{{direcaoOptimizacao[modeloMatematico.Direcao]}}</p>
+                                        <label style="display: inline-block;">Função Objetivo -></label>
+                                        <p style="display: inline-block;">{{direcaoOptimizacao[modeloMatematico.Direcao]}}</p>
                                         <p style="display: inline-block;">(Z) = </p>
                                         <p style="display: inline-block;" ng-repeat="(variavel, coeficiente) in modeloMatematico.Variaveis track by $index">
                                             {{coeficiente}}{{variavel}} {{numeroMenorQueLimite($index)}}
@@ -320,9 +314,14 @@
                     <div class="col-md-12 col-sm-12 col-lg-12 espacado">
                         <form ng-submit="solucionarProblema($event)" class="form" href="#" accept-charset="UTF-8">
                             <div class="row">
-                                <div style="float:initial;" class="col-md-4 form-group">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4 form-group">
+                                    <button style="width: 100%;" type="button" class="btn btn-danger btn-block">Reiniciar modelo</button>
+                                </div>
+                                <div class="col-md-4 form-group">
                                     <button style="width: 100%;" type="submit" class="btn btn-primary btn-block">Resolver</button>
                                 </div>
+                                <div class="col-md-2"></div>
                             </div>
                         </form>
                     </div>
