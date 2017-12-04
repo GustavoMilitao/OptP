@@ -142,7 +142,7 @@ function HomeController($scope, $http, $mdDialog) {
     }
 
     $scope.submitVariavel = function () {
-        if (Array.indexOf(Object.keys($scope.modeloMatematico.Variaveis),
+        if (Object.keys($scope.modeloMatematico.Variaveis).indexOf(
             $scope.capitalize($scope.variavelAAdicionar.nomeVariavel)) > -1
             && (!$scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)]
                 || $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)] == ""
