@@ -148,6 +148,13 @@ function HomeController($scope, $http, $mdDialog) {
                 || $scope.variavelAAdicionar.coeficiente == ""
                 || $scope.variavelAAdicionar.coeficiente == null)) {
             delete $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)];
+            $scope.modeloMatematico.Restricoes.every(function (restricaoModelo, index) {
+                if (Object.keys(restricaoModelo.Variaveis).some(function (variavelRestricao) {
+                    return $scope.capitalize($scope.variavelAAdicionar.nomeVariavel) === variavelRestricao;
+                })) {
+                    $scope.modeloMatematico.Restricoes.splice(index, 1);
+                }
+            });
         }
         else {
             $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)] =
