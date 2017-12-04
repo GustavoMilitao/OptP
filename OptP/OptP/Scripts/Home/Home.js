@@ -144,9 +144,9 @@ function HomeController($scope, $http, $mdDialog) {
     $scope.submitVariavel = function () {
         if (Object.keys($scope.modeloMatematico.Variaveis).indexOf(
             $scope.capitalize($scope.variavelAAdicionar.nomeVariavel)) > -1
-            && (!$scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)]
-                || $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)] == ""
-                || $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)] == null)) {
+            && (!$scope.variavelAAdicionar.coeficiente
+                || $scope.variavelAAdicionar.coeficiente == ""
+                || $scope.variavelAAdicionar.coeficiente == null)) {
             delete $scope.modeloMatematico.Variaveis[$scope.capitalize($scope.variavelAAdicionar.nomeVariavel)];
         }
         else {
