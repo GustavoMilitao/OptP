@@ -44,6 +44,7 @@ function HomeController($scope, $http, $mdDialog) {
 
     $scope.adicionarRestricao = function (ev) {
         if ($scope.temAlgumCoeficiente()) {
+            $scope.removerVariaveisComCoeficientesInvalidos();
             $scope.modeloMatematico.Restricoes.push($scope.restricaoAAdicionar);
             $scope.restricaoAAdicionar = {
                 NomeRestricao: "",
@@ -77,6 +78,16 @@ function HomeController($scope, $http, $mdDialog) {
             }
         });
         return tem;
+    }
+
+    $scope.removerVariaveisComCoeficientesInvalidos = function(){
+        Object.keys($scope.restricaoAAdicionar.Variaveis).forEach(function (elemento) {
+            if (!$scope.restricaoAAdicionar.Variaveis[elemento]
+                || $scope.restricaoAAdicionar.Variaveis[elemento] == ""
+                || $scope.restricaoAAdicionar.Variaveis[elemento] == null) {
+                    delete $scope.restricaoAAdicionar.Variaveis[elemento];  
+            }
+        });
     }
 
     $scope.haSolucao = function () {
